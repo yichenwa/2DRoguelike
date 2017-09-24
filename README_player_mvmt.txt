@@ -6,4 +6,6 @@ The enemy script is one of many scripts that will be used in the game. The enemy
 
 Importing these scripts into the Unity IDE and attaching them to any sprite, with rigid bodies, animators and box colliders will allow you to test out the scripts. 
 
+I had a lot of problems trying to merge
+
 Mike Fortin
