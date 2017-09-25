@@ -43,7 +43,6 @@ namespace Completed
         public GameObject[] outerWallTiles;                             //Array of outer tile prefabs.
 
         private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
-        private List<Vector3> gridPositions = new List<Vector3>();  //A list of possible locations to place tiles.
 
 
         private int[,] occupiedSpaces = new int[7, 7];                   //A matrix that takes an xy coordinate and returns the room ID contained there        
@@ -53,24 +52,9 @@ namespace Completed
         private int hasExitSize = 0;
 
 
-        //Clears our list gridPositions and prepares it to generate a new board.
-        void InitialiseList()
+        //Clears data structures in preparation for generating level
+        void InitialiseDataStructures()
         {
-            //Clear our list gridPositions.
-            gridPositions.Clear();
-
-            //Loop through x axis (columns).
-            for (int x = 1; x < newCols - 1; x++)
-            {
-                //Within each column, loop through y axis (rows).
-                for (int y = 1; y < newRows - 1; y++)
-                {
-                    //At each index add a new Vector3 to our list with the x and y coordinates of that position.
-                    gridPositions.Add(new Vector3(x, y, 0f));
-                }
-            }
-
-
             for (int x = 0; x < 7; x++)
             {
                 for (int y = 0; y < 7; y++)
@@ -83,8 +67,6 @@ namespace Completed
             roomCoordinatesSize = 0;
             hasExit = new List<int>();
             hasExitSize = 0;
-
-
         }
 
 
@@ -117,48 +99,7 @@ namespace Completed
             }
         }
 
-
-        //RandomPosition returns a random position from our list gridPositions.
-        Vector3 RandomPosition()
-        {
-            //Declare an integer randomIndex, set it's value to a random number between 0 and the count of items in our List gridPositions.
-            int randomIndex = Random.Range(0, gridPositions.Count);
-
-            //Declare a variable of type Vector3 called randomPosition, set it's value to the entry at randomIndex from our List gridPositions.
-            Vector3 randomPosition = gridPositions[randomIndex];
-
-            //Remove the entry at randomIndex from the list so that it can't be re-used.
-            gridPositions.RemoveAt(randomIndex);
-
-            //Return the randomly selected Vector3 position.
-            return randomPosition;
-        }
-
-
-        //LayoutObjectAtRandom accepts an array of game objects to choose from along with a minimum and maximum range for the number of objects to create.
-        void LayoutObjectAtRandom(GameObject[] tileArray, int minimum, int maximum)
-        {
-            //Choose a random number of objects to instantiate within the minimum and maximum limits
-            int objectCount = Random.Range(minimum, maximum + 1);
-
-            //Instantiate objects until the randomly chosen limit objectCount is reached
-            for (int i = 0; i < objectCount; i++)
-            {
-                //Choose a position for randomPosition by getting a random position from our list of available Vector3s stored in gridPosition
-                Vector3 randomPosition = RandomPosition();
-
-                //Choose a random tile from tileArray and assign it to tileChoice
-                GameObject tileChoice = tileArray[Random.Range(0, tileArray.Length)];
-
-                //Instantiate tileChoice at the position returned by RandomPosition with no change in rotation
-                Instantiate(tileChoice, randomPosition, Quaternion.identity);
-            }
-        }
-
-
-
-
-
+        //This method places starting room, places a certain number of regular rooms in a loop, then places an exit room.
         void GenerateMap(GameObject[] start, GameObject[] end, GameObject[] normal)
         {
             Vector2 startPos = new Vector2(3, 3);
@@ -190,21 +131,18 @@ namespace Completed
                     Instantiate(end[0], endPos, Quaternion.identity);
                     endSpaceFarAway = true;
                 }
-                //print(Math.Abs(endPos.magnitude-startPos.magnitude));
-                //print(endPos.x);
-                //print(endPos.y);
-
-                //Instantiate(end[0], coordinate, Quaternion.identity);
             }
 
         }
 
+        //Helper method for calculating distance between starting room position and potential exit room position
         double distanceBetweenPoints(int x1, int y1, int x2, int y2)
         {
             return Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
         }
 
 
+        //This method returns a valid pair of xy coordinates for placing a new room.
         Vector2 selectCoordinate()
         {
             Boolean coordinateSelected = false;
@@ -241,10 +179,7 @@ namespace Completed
 
                 if ((int)potentialCoordinates.x >= 7 || (int)potentialCoordinates.x < 0 || (int)potentialCoordinates.y >= 7 || (int)potentialCoordinates.y < 0)
                 {
-                    //print("This space is occupied!!!");
-                    //print((int)potentialCoordinates.x);
-                    //print((int)potentialCoordinates.y);
-                    //This means the potential coordinate is already occupied, must select a new potential xy coordinate pair.
+                    //This means the potential coordinate is out of bounds
                     coordinateSelected = false;
                 }
                 else if (occupiedSpaces[(int)potentialCoordinates.x, (int)potentialCoordinates.y] != -1)
@@ -255,20 +190,12 @@ namespace Completed
                 else
                 {
                     //Successfully found a coordinate to place a room
-                    //print((int)potentialCoordinates.x);
-                    //print((int)potentialCoordinates.y);
                     coordinateSelected = true;
                     return potentialCoordinates;
                 }
             }
             return new Vector2();
         }
-
-
-
-
-
-
 
 
 
@@ -279,20 +206,9 @@ namespace Completed
             BoardSetup();
 
             //Reset our list of gridpositions.
-            InitialiseList();
+            InitialiseDataStructures();
 
-            //Instantiate a random number of wall tiles based on minimum and maximum, at randomized positions.
-            //LayoutObjectAtRandom (wallTiles, wallCount.minimum, wallCount.maximum);
             GenerateMap(foodTiles, enemyTiles, wallTiles);
-
-            //Instantiate a random number of food tiles based on minimum and maximum, at randomized positions.
-            //LayoutObjectAtRandom (foodTiles, foodCount.minimum, foodCount.maximum);
-
-            //Determine number of enemies based on current level number, based on a logarithmic progression
-            int enemyCount = (int)Mathf.Log(level, 2f);
-
-            //Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
-            //LayoutObjectAtRandom (enemyTiles, enemyCount, enemyCount);
 
             //Instantiate the exit tile in the upper right hand corner of our game board
             Instantiate(exit, new Vector3(newCols - 1, newRows - 1, 0f), Quaternion.identity);
