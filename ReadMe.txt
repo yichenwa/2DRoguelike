@@ -1,1 +1,24 @@
-Hi friends,This is about how to change scene of our game.Right now I only know how to change the scene by press keys.At first, we are in a new scene, maybe the cave, after doing place the character, please remember to click 1. File-Save Scene2. named the scene //Maybe you can called cave ¡°cave¡±3.File-Build Settings- add open scene.Second, open a new scene , you can use it to place Lab elementsremember place the character at someplace1. File-Save Scene2. named the scene //Maybe you can called cave ¡°lab¡±3.File-Build Settings- add open scene.  Third drag my code ToNextScene.cs under player¡¯s inspector.In the 19th line of my code , change ¡°2¡± to second scene name, //maybe ¡°lab¡±Then you can change the scene by click space. I only know how to change scene by press keys right now:(
+Hi friends,
+This is about how to change scene of our game.
+Right now I only know how to change the scene by press keys.
+
+At first, we are in a new scene, maybe the cave, after doing place the character, please remember to clickÂ 
+1. File-Save Scene
+2. named the scene //Maybe you can called cave Â¡Â°caveÂ¡Â±
+3.File-Build Settings- add open scene.
+
+
+Second, open a new scene , you can use it to place Lab elements
+remember place the character at someplace
+1. File-Save Scene
+2. named the scene //Maybe you can called cave 
+3.File-Build Settings- add open scene.
+Â Â 
+
+Third drag my code ToNextScene.cs under playerÂ¡Â¯s inspector.
+
+In the 19th line of my code , change 2 to second scene name, //maybe lab
+
+Then you can change the scene by click space.
+ 
+I only know how to change scene by press keys right now:(
