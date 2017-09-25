@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/FREE 2D Unisex Human Structure/Scene/Demo.unity
-  isLoaded: 1
-  isActive: 1
