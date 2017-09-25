@@ -1,4 +1,4 @@
-﻿//Please Note: this code was originally a script found in an official Unity 2D Roguelike tutorial. Chris Elman has heavily edited the script to adapt it to our project's requirements.
+﻿//Please Note: this code was originally a script found in an official Unity 2D Roguelike tutorial. Chris Elman has heavily edited the script to adapt it to fit our project's requirements.
 //The original script can be at this address: https://unity3d.com/learn/tutorials/projects/2d-roguelike-tutorial/writing-board-manager?playlist=17150
 
 using UnityEngine;
@@ -46,7 +46,7 @@ namespace Completed
         private List<Vector3> gridPositions = new List<Vector3>();  //A list of possible locations to place tiles.
 
 
-        private int[,] occupiedSpaces = new int[7,7];                   //A matrix that takes an xy coordinate and returns the room ID contained there        
+        private int[,] occupiedSpaces = new int[7, 7];                   //A matrix that takes an xy coordinate and returns the room ID contained there        
         private List<Vector2> roomCoordinates = new List<Vector2>();    //A list of xy coordinates that have rooms placed in them
         private int roomCoordinatesSize = 0;
         private List<int> hasExit = new List<int>();                   //A list of room IDs that stil have available exits
@@ -71,11 +71,11 @@ namespace Completed
             }
 
 
-            for(int x=0; x<7; x++)
+            for (int x = 0; x < 7; x++)
             {
-                for(int y=0; y<7; y++)
+                for (int y = 0; y < 7; y++)
                 {
-                    occupiedSpaces[x,y] = -1;
+                    occupiedSpaces[x, y] = -1;
                 }
             }
 
@@ -170,7 +170,7 @@ namespace Completed
             hasExit.Add(1);
             hasExitSize += 1;
 
-            for (int i=0; i<8; i++)
+            for (int i = 0; i < 8; i++)
             {
                 Vector2 coordinate = selectCoordinate();
                 Instantiate(normal[0], coordinate, Quaternion.identity);
@@ -180,6 +180,28 @@ namespace Completed
                 hasExit.Add(2);
                 hasExitSize += 1;
             }
+
+            Boolean endSpaceFarAway = false;
+            while (endSpaceFarAway == false)
+            {
+                Vector2 endPos = selectCoordinate();
+                if (distanceBetweenPoints((int)startPos.x, (int)startPos.y, (int)endPos.x, (int)endPos.y) >= 3)
+                {
+                    Instantiate(end[0], endPos, Quaternion.identity);
+                    endSpaceFarAway = true;
+                }
+                //print(Math.Abs(endPos.magnitude-startPos.magnitude));
+                //print(endPos.x);
+                //print(endPos.y);
+
+                //Instantiate(end[0], coordinate, Quaternion.identity);
+            }
+
+        }
+
+        double distanceBetweenPoints(int x1, int y1, int x2, int y2)
+        {
+            return Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
         }
 
 
@@ -200,7 +222,7 @@ namespace Completed
                 if (randomDirection == 1)
                 {
                     //if(randomId.northPossible && northExists == false){
-                        //potentialCoordinates.y += 1;
+                    //potentialCoordinates.y += 1;
                     //else if(south...
                     potentialCoordinates.y += 1;
                 }
@@ -217,24 +239,24 @@ namespace Completed
                     potentialCoordinates.x -= 1;
                 }
 
-                if (occupiedSpaces[(int)potentialCoordinates.x, (int)potentialCoordinates.y] != -1)
+                if ((int)potentialCoordinates.x >= 7 || (int)potentialCoordinates.x < 0 || (int)potentialCoordinates.y >= 7 || (int)potentialCoordinates.y < 0)
                 {
-                    print("This space is occupied!!!");
-                    print((int)potentialCoordinates.x);
-                    print((int)potentialCoordinates.y);
+                    //print("This space is occupied!!!");
+                    //print((int)potentialCoordinates.x);
+                    //print((int)potentialCoordinates.y);
                     //This means the potential coordinate is already occupied, must select a new potential xy coordinate pair.
                     coordinateSelected = false;
                 }
-                else if ((int)potentialCoordinates.x >= 7 || (int)potentialCoordinates.x < 0 || (int)potentialCoordinates.y >= 7 || (int)potentialCoordinates.y < 0)
+                else if (occupiedSpaces[(int)potentialCoordinates.x, (int)potentialCoordinates.y] != -1)
                 {
-                    print("This space is out of bounds!");
+                    //This means the potential coordinate is already occupied, must select a new potential xy coordinate pair.
                     coordinateSelected = false;
                 }
                 else
                 {
                     //Successfully found a coordinate to place a room
-                    print((int)potentialCoordinates.x);
-                    print((int)potentialCoordinates.y);
+                    //print((int)potentialCoordinates.x);
+                    //print((int)potentialCoordinates.y);
                     coordinateSelected = true;
                     return potentialCoordinates;
                 }
