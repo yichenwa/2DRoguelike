@@ -1,9 +1,7 @@
 ﻿//Mike Fortin, Basic Player Script
 //All code in this file written by Mike Fortin thru 9/21
-//TODO: Get melee damage working
-//Incorporate flash when the parry is ready again 
+//TODO: Incorporate flash when the parry is ready again 
 //Ranged attack will add ammo after each melee hit with limitations
-//Possible dash
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +15,7 @@ public class PlayerScript2 : MonoBehaviour {
 	public float playerHP = 100; //Used to store adjust and update the players health
 	public float parryTime = 2f;
 	private string directionString = "";
-	public float ammo = 7;
+	public float ammo = 2;
 	private Rigidbody2D playerBody; //Used to find and adjust the body of the player
 	private Animator animator; //Used to set animation triggers off depending on movement
 	public bool canTakeDamage = true;
@@ -30,6 +28,7 @@ public class PlayerScript2 : MonoBehaviour {
 		playerBody.freezeRotation = true; //IMPORTANT! PLAYER TYPE MUST BE DYNAMIC WITH FREEZE ROTATION SELECTED
 		animator = FindObjectOfType<Animator> ();
 		canTakeDamage = true;
+		directionString = "d";
 	}
 
 	// This is how the player's movement and status will update 

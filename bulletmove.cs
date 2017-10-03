@@ -5,19 +5,19 @@ using UnityEngine;
 public class bulletmove : MonoBehaviour {
 
 	// Use this for initialization
-	public float BulletSpeed ;
+	public float BulletSpeed = 5;
 	private PlayerScript2 player;
-	private bool bulletMoving;
+	//private bool bulletMoving;
 	private Vector2 direction;
-	private BoxCollider2D bulletBox;
-	public float strength = 75;
+	//private BoxCollider2D bulletBox;
+	public float strength = 200;
 
 	void Start () 
 	{
-		bulletBox = FindObjectOfType<BoxCollider2D> ();
+		//bulletBox = FindObjectOfType<BoxCollider2D> ();
 		player = FindObjectOfType<PlayerScript2> ();
 
-		bulletMoving = false;
+		//bulletMoving = false;
 
 		if (player.getDirectionString () == "r") {
 			shootRight ();
@@ -61,8 +61,13 @@ public class bulletmove : MonoBehaviour {
 		direction = Vector2.down;
 	}
 
-	void OnTriggerEnter2D (Collider2D thing)
+	void OnCollisionEnter2D (Collision2D thing)
 	{
-		thing.SendMessageUpwards ("takeDamage", strength);
+		if (thing.gameObject.name != "Player") //Will need changing if there are more boxcolliders introduced
+		{
+			thing.gameObject.SendMessageUpwards ("takeDamage", strength);
+			Destroy (gameObject);
+		}
+
 	}
 }

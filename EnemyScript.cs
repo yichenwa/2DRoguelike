@@ -39,10 +39,10 @@ public class EnemyScript : MonoBehaviour {
 		{
 			playerPosition = (player.transform.position);
 			transform.position = Vector2.MoveTowards (transform.position, playerPosition, enemySpeed * Time.deltaTime); 
-			if (transform.position.x < 0) 
+			/*if (transform.position.x < 0) 
 			{
 				animator.SetTrigger ("enemy1 left");
-			}
+			}*/
 		}
 		if (enemyHP <= 0) 
 		{
@@ -53,13 +53,11 @@ public class EnemyScript : MonoBehaviour {
 		
 	void OnCollisionStay2D(Collision2D thing) //If the enemy collides with the player, inflict damage to him
 	{
-		if (thing.gameObject.name == "Player" && player.canTakeDamage == true && canDamage == true) //The new canTakeDamage works 
-		{																	   // with parrying
+		if (thing.gameObject.name == "Player" && player.canTakeDamage == true && canDamage == true) { //The new canTakeDamage works // with parrying
 			player.playerHP -= 50; //Damage done, can be adjusted
 			canDamage = false;
 			StartCoroutine (damageDelay ());
-		}
-
+		} 
 		canWalk = false;
 	}
 
