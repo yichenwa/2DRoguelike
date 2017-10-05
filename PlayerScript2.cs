@@ -1,6 +1,5 @@
 ﻿//Mike Fortin, Basic Player Script
-//All code in this file written by Mike Fortin thru 9/21
-//TODO: Incorporate flash when the parry is ready again 
+//All code in this file written by Mike Fortin thru 10/5
 //Ranged attack will add ammo after each melee hit with limitations
 using System.Collections;
 using System.Collections.Generic;
@@ -20,6 +19,7 @@ public class PlayerScript2 : MonoBehaviour {
 	private Animator animator; //Used to set animation triggers off depending on movement
 	public bool canTakeDamage = true;
 	private bool canParryAgain = true;
+	private Vector2 currentPosition;
 
 	// Used for initialization
 	void Start () 
@@ -29,6 +29,7 @@ public class PlayerScript2 : MonoBehaviour {
 		animator = FindObjectOfType<Animator> ();
 		canTakeDamage = true;
 		directionString = "d";
+		currentPosition.Set (transform.position.x, transform.position.y);
 	}
 
 	// This is how the player's movement and status will update 
@@ -74,6 +75,7 @@ public class PlayerScript2 : MonoBehaviour {
 		{
 			this.gameObject.SetActive(false);
 		}
+		currentPosition.Set (transform.position.x, transform.position.y);
 	}
 	IEnumerator parryDelay()
 	{
@@ -95,5 +97,9 @@ public class PlayerScript2 : MonoBehaviour {
 	public bool getParrying()
 	{
 		return !canParryAgain;
+	}
+	public Vector2 getCurrentPosition()
+	{
+		return currentPosition;
 	}
 }

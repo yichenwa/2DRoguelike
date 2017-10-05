@@ -1,64 +1,52 @@
-﻿// Mike Fortin, Basic Enemy Script
-//All code in this file written by Mike Fortin thru 10/5
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof (Rigidbody2D))]
 [RequireComponent (typeof (BoxCollider2D))]
-[RequireComponent (typeof (Animator))]
-public class EnemyScript : MonoBehaviour {
+//[RequireComponent (typeof (Animator))]
+public class Boss1 : MonoBehaviour {
 
-	public float enemySpeed = .75f; //Used to set the enemies walking speed
-	public float enemyHP = 150;
+	public float enemySpeed = 1.5f; //Used to set the enemies walking speed
+	public float enemyHP = 1000;
 	private Vector2 playerPosition; //Will be used to locate the player's location
 	private PlayerScript2 player; //Finds the player object by finding the PlayerScript2 object
 	private Rigidbody2D enemyBody; //Used to control the enemy body 
 	private bool canWalk = true; //Will be used to make the enemy pause if a condition is met
 	private bool canDamage = true;
-	private Animator animator;
+	private Vector2 targetPosition;
+	//private Animator animator;
 
-	// Used for initialization
+	// Use this for initialization
 	void Start () 
 	{
 		player = FindObjectOfType<PlayerScript2> ();
 		enemyBody = FindObjectOfType<Rigidbody2D> ();
-		animator = FindObjectOfType<Animator> ();
-		enemyBody.freezeRotation = true; //IMPORTANT! ENEMY MUST BE KINEMATIC
-
+		enemyBody.freezeRotation = true;
+		//animator = FindObjectOfType<Animator> ();
 	}
 	
-	//Main function for the enemy to update
+	// Update is called once per frame
 	void FixedUpdate () 
 	{
 		if (canWalk == false) 
 		{
 			StartCoroutine (walkDelay()); //After he's been stopped, call the function to restart his walking
 		}
-		if (canWalk == true)  //Move towards the player creepily
+
+		if (canWalk == true) 
 		{
+			//This is where the magic happens
 			playerPosition = (player.transform.position);
-			transform.position = Vector2.MoveTowards (transform.position, playerPosition, enemySpeed * Time.deltaTime); 
-			/*if (transform.position.x < 0) 
-			{
-				animator.SetTrigger ("enemy1 left");
-			}*/
+			transform.position = Vector2.MoveTowards(transform.position, playerPosition, enemySpeed * Time.deltaTime);
+			//StartCoroutine (targetPosition);
+
 		}
+
 		if (enemyHP <= 0) 
 		{
 			this.gameObject.SetActive (false);
 		}
-
-	}
-		
-	void OnCollisionStay2D(Collision2D thing) //If the enemy collides with the player, inflict damage to him
-	{
-		if (thing.gameObject.name == "Player" && player.canTakeDamage == true && canDamage == true) { //The new canTakeDamage works // with parrying
-			player.playerHP -= 50; //Damage done, can be adjusted
-			canDamage = false;
-			StartCoroutine (damageDelay ());
-		} 
-		canWalk = false;
 	}
 
 	public void takeDamage(float damage)
@@ -66,9 +54,19 @@ public class EnemyScript : MonoBehaviour {
 		enemyHP -= damage;
 	}
 
+	void OnCollisionStay2D(Collision2D thing) //If the enemy collides with the player, inflict damage to him
+	{
+		if (thing.gameObject.name == "Player" && player.canTakeDamage == true && canDamage == true) { //The new canTakeDamage works // with parrying
+			player.playerHP -= 100; //Damage done, can be adjusted
+			canDamage = false;
+			StartCoroutine (damageDelay ());
+		} 
+		canWalk = false; 
+	}
+
 	IEnumerator walkDelay() //Used to get the enemy walking after a collision
 	{
-		yield return new WaitForSeconds (.5f);
+		yield return new WaitForSeconds (2.5f); //THE KEY TO VICTORY
 		canWalk = true;
 	}
 
@@ -77,4 +75,11 @@ public class EnemyScript : MonoBehaviour {
 		yield return new WaitForSeconds (.5f);
 		canDamage = true;
 	}
+
+	/*IEnumerator standStill()
+	{
+		yield return new WaitForSeconds (1.5f);
+		canWalk = false;
+	}
+	*/
 }

@@ -16,7 +16,7 @@ public class shooting : MonoBehaviour {
 	private PlayerScript2 player;
 	void Start () 
 	{
-		animator = GetComponent<Animator> ();
+		animator = FindObjectOfType<Animator> ();
 		player = FindObjectOfType<PlayerScript2> ();
 
 	}
@@ -29,10 +29,12 @@ public class shooting : MonoBehaviour {
 			if (player.getDirectionString () == "l") {
 				leftPositionFix.Set (transform.position.x - leftOffset, transform.position.y);
 				Instantiate (Bullet, leftPositionFix,  new Quaternion(0, 0, 0, 0));
+				animator.SetTrigger ("shootleft");
 			} 
 			else if (player.getDirectionString() == "r")
 			{
 				Instantiate (Bullet, transform.position, new Quaternion (0, 0, 0, 0));
+				animator.SetTrigger ("shootright");
 			}
 			player.ammo -= 1;
 			//shotFired = true;

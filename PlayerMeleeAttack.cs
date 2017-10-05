@@ -9,6 +9,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 	private float attackTimer = 0;
 	private float attackDelay = .3f;
 	private PlayerScript2 player;
+	private Animator animator;
 
 	public Collider2D left;
 	public Collider2D right;
@@ -22,29 +23,27 @@ public class PlayerMeleeAttack : MonoBehaviour
 		up.enabled = false;
 		down.enabled = false;
 		player = FindObjectOfType<PlayerScript2> ();
+		animator = FindObjectOfType<Animator> ();
 	}
 
 	void Update()
 	{
-		if (Input.GetKeyDown (KeyCode.T) && !attacking && player.getParrying() == false) //Restricts attack while parrying
+		if (Input.GetKeyDown (KeyCode.T) && !attacking /*&& player.getParrying() == false*/) //Restricts attack while parrying
 		{
 			attacking = true;
 			attackTimer = attackDelay;
-			if (player.getDirectionString () == "u") 
-			{
+			if (player.getDirectionString () == "u") {
 				up.enabled = true;
-			} 
-			else if (player.getDirectionString () == "d") 
-			{
+				animator.SetTrigger ("sliceback");
+			} else if (player.getDirectionString () == "d") {
 				down.enabled = true;
-			} 
-			else if (player.getDirectionString () == "l") 
-			{
+				animator.SetTrigger ("sliceforward");
+			} else if (player.getDirectionString () == "l") {
 				left.enabled = true;
-			} 
-			else if (player.getDirectionString () == "r") 
-			{
+				animator.SetTrigger ("sliceleft");
+			} else if (player.getDirectionString () == "r") {
 				right.enabled = true;
+				animator.SetTrigger ("sliceright");
 			}
 		}
 		if (attacking) 

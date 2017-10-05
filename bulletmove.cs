@@ -10,7 +10,7 @@ public class bulletmove : MonoBehaviour {
 	//private bool bulletMoving;
 	private Vector2 direction;
 	//private BoxCollider2D bulletBox;
-	public float strength = 200;
+	public float strength = 50; //Bullets and slashing are equal to start
 
 	void Start () 
 	{
