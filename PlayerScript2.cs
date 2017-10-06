@@ -12,6 +12,7 @@ public class PlayerScript2 : MonoBehaviour {
 
 	public float playerSpeed = 3f; //Used to set the players speed when moving
 	public float playerHP = 100; //Used to store adjust and update the players health
+	public float maxHP = 100;
 	public float parryTime = 2f;
 	private string directionString = "";
 	public float ammo = 2;
