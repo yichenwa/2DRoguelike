@@ -9,7 +9,7 @@ public class shooting : MonoBehaviour {
 	// Use this for initialization
 	public GameObject Bullet; 
 	private Vector2 leftPositionFix;
-	private float leftOffset = .05f;
+	private float leftOffset = .10f;
 	//public float shotDelay = 5f; 
 	//private bool shotFired = false;
 		

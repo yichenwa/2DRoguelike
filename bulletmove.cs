@@ -61,11 +61,15 @@ public class bulletmove : MonoBehaviour {
 		direction = Vector2.down;
 	}
 
-	void OnCollisionEnter2D (Collision2D thing)
+	void OnCollisionEnter2D (Collision2D thing) //
 	{
-		if (thing.gameObject.name != "Player") //Will need changing if there are more boxcolliders introduced
+		if (thing.gameObject.tag == "Enemy") //Will need changing if there are more boxcolliders introduced
 		{
 			thing.gameObject.SendMessageUpwards ("takeDamage", strength);
+			Destroy (gameObject);
+		}
+		if (thing.gameObject.name != "Player") 
+		{
 			Destroy (gameObject);
 		}
 
