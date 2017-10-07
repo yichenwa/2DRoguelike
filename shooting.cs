@@ -8,7 +8,7 @@ public class shooting : MonoBehaviour {
 	private Animator animator;
 	// Use this for initialization
 	public GameObject Bullet; 
-	private Vector2 leftPositionFix;
+	private Vector3 leftPositionFix;
 	private float leftOffset = .10f;
 	//public float shotDelay = 5f; 
 	//private bool shotFired = false;
@@ -27,7 +27,7 @@ public class shooting : MonoBehaviour {
 		{   
 			//animator.SetTrigger ("attack"); //We will need left, right, up, down attacking animations
 			if (player.getDirectionString () == "l") {
-				leftPositionFix.Set (transform.position.x - leftOffset, transform.position.y);
+				leftPositionFix.Set (transform.position.x - leftOffset, transform.position.y, -1);
 				Instantiate (Bullet, leftPositionFix,  new Quaternion(0, 0, 0, 0));
 				animator.SetTrigger ("shootleft");
 			} 
