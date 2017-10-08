@@ -2,22 +2,22 @@
 # Wavefront file for 'lab1_mesh_0004.obj'
 
 # Vertices (Count = 8)
-v 0 -80 0
-v -16 -80 0
-v -16 -64 0
-v 0 -64 0
-v 0 -96 0
-v -16 -96 0
-v -16 -80 0
-v 0 -80 0
+v -240 -80 0
+v -256 -80 0
+v -256 -64 0
+v -240 -64 0
+v -240 -96 0
+v -256 -96 0
+v -256 -80 0
+v -240 -80 0
 
 # Texture cooridinates (Count = 6)
-vt 0.9 0.9
-vt 1 0.9
-vt 1 1
-vt 0.9 1
+vt 0.8 0.8
 vt 0.9 0.8
-vt 1 0.8
+vt 0.9 0.9
+vt 0.8 0.9
+vt 0.8 0.7
+vt 0.9 0.7
 
 # Normal
 vn 0 0 -1
