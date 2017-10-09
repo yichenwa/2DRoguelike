@@ -1,13 +1,13 @@
-2D Roguelike v0.1.0 readme
+2D Roguelike v0.2.0 readme
 
 To execute this program from Windows:
 
 1. Go to the root directory
-2. Download 2D Roguelike Prototype.exe
-3. Download 2D Roguelike Prototype_Data.zip
-4. Unzip 2D Roguelike Prototype_Data.zip
-5. Ensure that the 2D Roguelike Prototype_Data folder and the 2D Roguelike Prototype.exe file are in the same directory (for example both on your computer's desktop)
-6. Double click 2D Roguelike Prototype.exe to lauch the game and hit Play!
+2. Download 2D Roguelike Project.exe
+3. Download 2D Roguelike Project_Data.zip
+4. Unzip 2D Roguelike Project_Data.zip
+5. Ensure that the 2D Roguelike Project_Data folder and the 2D Roguelike.exe file are in the same directory (for example both on your computer's desktop)
+6. Double click 2D Roguelike Project.exe to lauch the game and hit Play!
 
 The procedure is the same for any system that can run a .exe file.
 
