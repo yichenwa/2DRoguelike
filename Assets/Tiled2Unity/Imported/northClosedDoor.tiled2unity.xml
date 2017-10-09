@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 9/24/2017 9:58:16 PM-->
+<!--Last exported: 9/24/2017 9:16:52 PM-->
 <Tiled2Unity version="1.0.12.4">
   <AssignMaterial mesh="northClosedDoor_mesh_0001" material="cave" />
   <Prefab name="northClosedDoor" orientation="Orthogonal" staggerAxis="Y" staggerIndex="Odd" hexSideLength="0" numLayers="1" numTilesWide="16" numTilesHigh="11" tileWidth="16" tileHeight="16" exportScale="1" mapWidthInPixels="256" mapHeightInPixels="176" backgroundColor="#808080">
