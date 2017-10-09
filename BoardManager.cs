@@ -14,38 +14,39 @@ namespace Completed
     {
         // Using Serializable allows us to embed a class with sub properties in the inspector.
         [Serializable]
-        public class Count
+        public class RoomPair
         {
-            public int minimum;             //Minimum value for our Count class.
-            public int maximum;             //Maximum value for our Count class.
-
+            public GameObject _fantasy;             //Fantasy room prefab
+            public GameObject _science;             //Science room prefab
 
             //Assignment constructor.
-            public Count(int min, int max)
+            public RoomPair(GameObject fantasy, GameObject science)
             {
-                minimum = min;
-                maximum = max;
+                _fantasy = fantasy;
+                _science = science;
             }
         }
 
-
-        public int columns = 8;                                         //Number of columns in our game board.
-        public int rows = 8;											//Number of rows in our game board.
-        public int newRows = 7;
-        public int newCols = 7;
-        public Count wallCount = new Count(5, 9);                       //Lower and upper limit for our random number of walls per level.
-        public Count foodCount = new Count(1, 5);                       //Lower and upper limit for our random number of food items per level.
-        public GameObject exit;                                         //Prefab to spawn for exit.
-        public GameObject[] floorTiles;                                 //Array of floor prefabs.
-        public GameObject[] wallTiles;                                  //Array of wall prefabs.
-        public GameObject[] foodTiles;                                  //Array of food prefabs.
-        public GameObject[] enemyTiles;                                 //Array of enemy prefabs.
-        public GameObject[] outerWallTiles;                             //Array of outer tile prefabs.
+        public GameObject[] fantasyStartRooms;                                 //Array of starting room prefabs
+        public GameObject[] fantasyEndRooms;                                   //Array of end room prefabs
+        public GameObject[] fantasyNorthRooms;                                 //Array of room prefabs with exits to the north
+        public GameObject[] fantasySouthRooms;                                 //Array of room prefabs with exits to the south
+        public GameObject[] fantasyEastRooms;                                  //Array of room prefabs with exits to the east
+        public GameObject[] fantasyWestRooms;                                  //Array of room prefabs with exits to the west
+        public GameObject[] fantasyEnemies;                                    //Array of enemy prefabs
+        public GameObject[] scienceStartRooms;                                 //Array of starting room prefabs
+        public GameObject[] scienceEndRooms;                                   //Array of end room prefabs
+        public GameObject[] scienceNorthRooms;                                 //Array of room prefabs with exits to the north
+        public GameObject[] scienceSouthRooms;                                 //Array of room prefabs with exits to the south
+        public GameObject[] scienceEastRooms;                                  //Array of room prefabs with exits to the east
+        public GameObject[] scienceWestRooms;                                  //Array of room prefabs with exits to the west
 
         private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
 
 
-        private int[,] occupiedSpaces = new int[7, 7];                   //A matrix that takes an xy coordinate and returns the room ID contained there        
+        private int[,] occupiedSpaces = new int[7, 7];                   //A matrix that takes an xy coordinate and returns the room ID contained there
+        private GameObject[,] fantasyRooms = new GameObject[7, 7];     //A matrix that holds the fantasy rooms that have been instantiated
+        private GameObject[,] scienceRooms = new GameObject[7, 7];     //A matrix that holds the science rooms that have been instantiated
         private List<Vector2> roomCoordinates = new List<Vector2>();    //A list of xy coordinates that have rooms placed in them
         private int roomCoordinatesSize = 0;
         private List<int> hasExit = new List<int>();                   //A list of room IDs that stil have available exits
@@ -60,6 +61,8 @@ namespace Completed
                 for (int y = 0; y < 7; y++)
                 {
                     occupiedSpaces[x, y] = -1;
+                    fantasyRooms[x, y] = null;
+                    scienceRooms[x, y] = null;
                 }
             }
 
@@ -69,41 +72,17 @@ namespace Completed
             hasExitSize = 0;
         }
 
-
-        //Sets up the outer walls and floor (background) of the game board.
-        void BoardSetup()
-        {
-            //Instantiate Board and set boardHolder to its transform.
-            boardHolder = new GameObject("Board").transform;
-
-            //Loop along x axis, starting from -1 (to fill corner) with floor or outerwall edge tiles.
-            for (int x = -1; x < newCols + 1; x++)
-            {
-                //Loop along y axis, starting from -1 to place floor or outerwall tiles.
-                for (int y = -1; y < newRows + 1; y++)
-                {
-                    //Choose a random tile from our array of floor tile prefabs and prepare to instantiate it.
-                    GameObject toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
-
-                    //Check if we current position is at board edge, if so choose a random outer wall prefab from our array of outer wall tiles.
-                    if (x == -1 || x == newCols || y == -1 || y == newRows)
-                        toInstantiate = outerWallTiles[Random.Range(0, outerWallTiles.Length)];
-
-                    //Instantiate the GameObject instance using the prefab chosen for toInstantiate at the Vector3 corresponding to current grid position in loop, cast it to GameObject.
-                    GameObject instance =
-                        Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
-
-                    //Set the parent of our newly instantiated object instance to boardHolder, this is just organizational to avoid cluttering hierarchy.
-                    instance.transform.SetParent(boardHolder);
-                }
-            }
-        }
-
         //This method places starting room, places a certain number of regular rooms in a loop, then places an exit room.
-        void GenerateMap(GameObject[] start, GameObject[] end, GameObject[] normal)
+        void GenerateMap(GameObject[] fantasyStartRooms, GameObject[] fantasyEndRooms, GameObject[] fantasyNorthRooms, GameObject[] fantasySouthRooms, GameObject[] fantasyEastRooms, GameObject[] fantasyWestRooms, GameObject[] scienceStartRooms, GameObject[] scienceEndRooms, GameObject[] scienceNorthRooms, GameObject[] scienceSouthRooms, GameObject[] scienceEastRooms, GameObject[] scienceWestRooms)
         {
             Vector2 startPos = new Vector2(3, 3);
-            Instantiate(start[0], startPos, Quaternion.identity);
+            Vector2 scaledStartPos = new Vector2(3 * 256, 3 * 176);
+            Vector2 offsetStartPos = new Vector2((3 * 256) + 2000, 3 * 176);
+
+            GameObject roomToInstantiate = Instantiate(fantasyStartRooms[0], scaledStartPos, Quaternion.identity);
+            fantasyRooms[3, 3] = roomToInstantiate;
+            roomToInstantiate = Instantiate(scienceStartRooms[0], offsetStartPos, Quaternion.identity);
+            scienceRooms[3, 3] = roomToInstantiate;
 
             occupiedSpaces[3, 3] = 1;
             roomCoordinates.Add(startPos);
@@ -113,8 +92,76 @@ namespace Completed
 
             for (int i = 0; i < 8; i++)
             {
-                Vector2 coordinate = selectCoordinate();
-                Instantiate(normal[0], coordinate, Quaternion.identity);
+                Vector3 coordinate = selectCoordinate();
+                Vector2 scaledCoordinate = new Vector2((int)coordinate.x * 256, (int)coordinate.y * 176);
+                Vector2 offsetCoordinate = new Vector2(((int)coordinate.x * 256) + 2000, (int)coordinate.y * 176);
+
+                RoomPair fanAndSciRoom = selectRoom();
+
+                GameObject fantasyRoomToInstantiate = Instantiate(fanAndSciRoom._fantasy, scaledCoordinate, Quaternion.identity);
+                fantasyRooms[(int)coordinate.x, (int)coordinate.y] = fantasyRoomToInstantiate;
+                spawnEnemies(scaledCoordinate, fantasyEnemies, fanAndSciRoom._fantasy.tag);
+                GameObject scienceRoomToInstantiate = Instantiate(fanAndSciRoom._science, offsetCoordinate, Quaternion.identity);
+                scienceRooms[(int)coordinate.x, (int)coordinate.y] = scienceRoomToInstantiate;
+                spawnEnemies(offsetCoordinate, fantasyEnemies, fanAndSciRoom._science.tag);
+
+                if ((int)coordinate.z == 1)
+                {
+                    GameObject fantasyToDestroy = fantasyRooms[(int)coordinate.x, (int)coordinate.y - 1];
+                    GameObject scienceToDestroy = scienceRooms[(int)coordinate.x, (int)coordinate.y - 1];
+                    Destroy(fantasyToDestroy.transform.Find("northDoorClosed").gameObject);
+                    Destroy(fantasyToDestroy.transform.Find("northWall").gameObject);
+                    Destroy(scienceToDestroy.transform.Find("northDoorClosed").gameObject);
+                    Destroy(scienceToDestroy.transform.Find("northWall").gameObject);
+
+                    Destroy(fantasyRoomToInstantiate.transform.Find("southDoorClosed").gameObject);
+                    Destroy(fantasyRoomToInstantiate.transform.Find("southWall").gameObject);
+                    Destroy(scienceRoomToInstantiate.transform.Find("southDoorClosed").gameObject);
+                    Destroy(scienceRoomToInstantiate.transform.Find("southWall").gameObject);
+                }
+                else if ((int)coordinate.z == 2)
+                {
+                    GameObject fantasyToDestroy = fantasyRooms[(int)coordinate.x, (int)coordinate.y + 1];
+                    GameObject scienceToDestroy = scienceRooms[(int)coordinate.x, (int)coordinate.y + 1];
+                    Destroy(fantasyToDestroy.transform.Find("southDoorClosed").gameObject);
+                    Destroy(fantasyToDestroy.transform.Find("southWall").gameObject);
+                    Destroy(scienceToDestroy.transform.Find("southDoorClosed").gameObject);
+                    Destroy(scienceToDestroy.transform.Find("southWall").gameObject);
+
+                    Destroy(fantasyRoomToInstantiate.transform.Find("northDoorClosed").gameObject);
+                    Destroy(fantasyRoomToInstantiate.transform.Find("northWall").gameObject);
+                    Destroy(scienceRoomToInstantiate.transform.Find("northDoorClosed").gameObject);
+                    Destroy(scienceRoomToInstantiate.transform.Find("northWall").gameObject);
+                }
+                else if ((int)coordinate.z == 3)
+                {
+                    GameObject fantasyToDestroy = fantasyRooms[(int)coordinate.x - 1, (int)coordinate.y];
+                    GameObject scienceToDestroy = scienceRooms[(int)coordinate.x - 1, (int)coordinate.y];
+                    Destroy(fantasyToDestroy.transform.Find("eastDoorClosed").gameObject);
+                    Destroy(fantasyToDestroy.transform.Find("eastWall").gameObject);
+                    Destroy(scienceToDestroy.transform.Find("eastDoorClosed").gameObject);
+                    Destroy(scienceToDestroy.transform.Find("eastWall").gameObject);
+
+                    Destroy(fantasyRoomToInstantiate.transform.Find("westDoorClosed").gameObject);
+                    Destroy(fantasyRoomToInstantiate.transform.Find("westWall").gameObject);
+                    Destroy(scienceRoomToInstantiate.transform.Find("westDoorClosed").gameObject);
+                    Destroy(scienceRoomToInstantiate.transform.Find("westWall").gameObject);
+                }
+                else if ((int)coordinate.z == 4)
+                {
+                    GameObject fantasyToDestroy = fantasyRooms[(int)coordinate.x + 1, (int)coordinate.y];
+                    GameObject scienceToDestroy = scienceRooms[(int)coordinate.x + 1, (int)coordinate.y];
+                    Destroy(fantasyToDestroy.transform.Find("westDoorClosed").gameObject);
+                    Destroy(fantasyToDestroy.transform.Find("westWall").gameObject);
+                    Destroy(scienceToDestroy.transform.Find("westDoorClosed").gameObject);
+                    Destroy(scienceToDestroy.transform.Find("westWall").gameObject);
+
+                    Destroy(fantasyRoomToInstantiate.transform.Find("eastDoorClosed").gameObject);
+                    Destroy(fantasyRoomToInstantiate.transform.Find("eastWall").gameObject);
+                    Destroy(scienceRoomToInstantiate.transform.Find("eastDoorClosed").gameObject);
+                    Destroy(scienceRoomToInstantiate.transform.Find("eastWall").gameObject);
+                }
+
                 occupiedSpaces[(int)coordinate.x, (int)coordinate.y] = 2;
                 roomCoordinates.Add(coordinate);
                 roomCoordinatesSize += 1;
@@ -125,11 +172,75 @@ namespace Completed
             Boolean endSpaceFarAway = false;
             while (endSpaceFarAway == false)
             {
-                Vector2 endPos = selectCoordinate();
+                Vector3 endPos = selectCoordinate();
+                Vector2 scaledEndPos = new Vector2((int)endPos.x * 256, (int)endPos.y * 176);
+                Vector2 offsetEndPos = new Vector2(((int)endPos.x * 256) + 2000, (int)endPos.y * 176);
                 if (distanceBetweenPoints((int)startPos.x, (int)startPos.y, (int)endPos.x, (int)endPos.y) >= 3)
                 {
-                    Instantiate(end[0], endPos, Quaternion.identity);
+                    GameObject fantasyRoomToInstantiate = Instantiate(fantasyEndRooms[0], scaledEndPos, Quaternion.identity);
+                    fantasyRooms[(int)endPos.x, (int)endPos.y] = roomToInstantiate;
+                    spawnEnemies(scaledEndPos, fantasyEnemies, fantasyEndRooms[0].tag);
+                    GameObject scienceRoomToInstantiate = Instantiate(scienceEndRooms[0], offsetEndPos, Quaternion.identity);
+                    scienceRooms[(int)endPos.x, (int)endPos.y] = roomToInstantiate;
+                    spawnEnemies(offsetEndPos, fantasyEnemies, scienceEndRooms[0].tag);
                     endSpaceFarAway = true;
+
+                    if ((int)endPos.z == 1)
+                    {
+                        GameObject fantasyToDestroy = fantasyRooms[(int)endPos.x, (int)endPos.y - 1];
+                        GameObject scienceToDestroy = scienceRooms[(int)endPos.x, (int)endPos.y - 1];
+                        Destroy(fantasyToDestroy.transform.Find("northDoorClosed").gameObject);
+                        Destroy(fantasyToDestroy.transform.Find("northWall").gameObject);
+                        Destroy(scienceToDestroy.transform.Find("northDoorClosed").gameObject);
+                        Destroy(scienceToDestroy.transform.Find("northWall").gameObject);
+
+                        Destroy(fantasyRoomToInstantiate.transform.Find("southDoorClosed").gameObject);
+                        Destroy(fantasyRoomToInstantiate.transform.Find("southWall").gameObject);
+                        Destroy(scienceRoomToInstantiate.transform.Find("southDoorClosed").gameObject);
+                        Destroy(scienceRoomToInstantiate.transform.Find("southWall").gameObject);
+                    }
+                    else if ((int)endPos.z == 2)
+                    {
+                        GameObject fantasyToDestroy = fantasyRooms[(int)endPos.x, (int)endPos.y + 1];
+                        GameObject scienceToDestroy = scienceRooms[(int)endPos.x, (int)endPos.y + 1];
+                        Destroy(fantasyToDestroy.transform.Find("southDoorClosed").gameObject);
+                        Destroy(fantasyToDestroy.transform.Find("southWall").gameObject);
+                        Destroy(scienceToDestroy.transform.Find("southDoorClosed").gameObject);
+                        Destroy(scienceToDestroy.transform.Find("southWall").gameObject);
+
+                        Destroy(fantasyRoomToInstantiate.transform.Find("northDoorClosed").gameObject);
+                        Destroy(fantasyRoomToInstantiate.transform.Find("northWall").gameObject);
+                        Destroy(scienceRoomToInstantiate.transform.Find("northDoorClosed").gameObject);
+                        Destroy(scienceRoomToInstantiate.transform.Find("northWall").gameObject);
+                    }
+                    else if ((int)endPos.z == 3)
+                    {
+                        GameObject fantasyToDestroy = fantasyRooms[(int)endPos.x - 1, (int)endPos.y];
+                        GameObject scienceToDestroy = scienceRooms[(int)endPos.x - 1, (int)endPos.y];
+                        Destroy(fantasyToDestroy.transform.Find("eastDoorClosed").gameObject);
+                        Destroy(fantasyToDestroy.transform.Find("eastWall").gameObject);
+                        Destroy(scienceToDestroy.transform.Find("eastDoorClosed").gameObject);
+                        Destroy(scienceToDestroy.transform.Find("eastWall").gameObject);
+
+                        Destroy(fantasyRoomToInstantiate.transform.Find("westDoorClosed").gameObject);
+                        Destroy(fantasyRoomToInstantiate.transform.Find("westWall").gameObject);
+                        Destroy(scienceRoomToInstantiate.transform.Find("westDoorClosed").gameObject);
+                        Destroy(scienceRoomToInstantiate.transform.Find("westWall").gameObject);
+                    }
+                    else if ((int)endPos.z == 4)
+                    {
+                        GameObject fantasyToDestroy = fantasyRooms[(int)endPos.x + 1, (int)endPos.y];
+                        GameObject scienceToDestroy = scienceRooms[(int)endPos.x + 1, (int)endPos.y];
+                        Destroy(fantasyToDestroy.transform.Find("westDoorClosed").gameObject);
+                        Destroy(fantasyToDestroy.transform.Find("westWall").gameObject);
+                        Destroy(scienceToDestroy.transform.Find("westDoorClosed").gameObject);
+                        Destroy(scienceToDestroy.transform.Find("westWall").gameObject);
+
+                        Destroy(fantasyRoomToInstantiate.transform.Find("eastDoorClosed").gameObject);
+                        Destroy(fantasyRoomToInstantiate.transform.Find("eastWall").gameObject);
+                        Destroy(scienceRoomToInstantiate.transform.Find("eastDoorClosed").gameObject);
+                        Destroy(scienceRoomToInstantiate.transform.Find("eastWall").gameObject);
+                    }
                 }
             }
 
@@ -142,8 +253,8 @@ namespace Completed
         }
 
 
-        //This method returns a valid pair of xy coordinates for placing a new room.
-        Vector2 selectCoordinate()
+        //This method returns a valid pair of xy coordinates for placing a new room. The third piece of data is the direction the new room was placed in (N=1,S=2,E=3,W=4)
+        Vector3 selectCoordinate()
         {
             Boolean coordinateSelected = false;
             while (coordinateSelected == false)
@@ -152,7 +263,7 @@ namespace Completed
                 Vector2 randomCoordinates = roomCoordinates[randomIndex]; //Grabs the coordinates at random index
                 int randomId = occupiedSpaces[(int)randomCoordinates.x, (int)randomCoordinates.y]; //Finds corresponding Room ID at coordinates
 
-                int randomDirection = Random.Range(1, 4);
+                int randomDirection = Random.Range(1, 5);
                 Vector2 potentialCoordinates = randomCoordinates;
                 //================================
                 //Insert direction checking here!!!
@@ -190,28 +301,97 @@ namespace Completed
                 else
                 {
                     //Successfully found a coordinate to place a room
-                    coordinateSelected = true;
-                    return potentialCoordinates;
+                    if (randomDirection == 1)    //This case occurs when placing a room to the north
+                    {
+                        coordinateSelected = true;
+                        return new Vector3((int)potentialCoordinates.x, (int)potentialCoordinates.y, 1);
+                    }
+                    else if (randomDirection == 2)    //This case occurs when placing a room to the south
+                    {
+                        coordinateSelected = true;
+                        return new Vector3((int)potentialCoordinates.x, (int)potentialCoordinates.y, 2);
+                    }
+                    else if (randomDirection == 3)    //This case occurs when placing a room to the east
+                    {
+                        coordinateSelected = true;
+                        return new Vector3((int)potentialCoordinates.x, (int)potentialCoordinates.y, 3);
+                    }
+                    else if (randomDirection == 4)    //This case occurs when placing a room to the west
+                    {
+                        coordinateSelected = true;
+                        return new Vector3((int)potentialCoordinates.x, (int)potentialCoordinates.y, 4);
+                    }
                 }
             }
-            return new Vector2();
+            return new Vector3();
+        }
+
+        //Pulls a random room prefab out of the array of rooms
+        RoomPair selectRoom()
+        {
+            int randomRoom = Random.Range(0, fantasyNorthRooms.Length - 1);
+            return new RoomPair(fantasyNorthRooms[randomRoom], scienceNorthRooms[randomRoom]);
+        }
+
+
+        void spawnEnemies(Vector2 pos, GameObject[] enemyTypes, String roomID)
+        {
+            switch (roomID)
+            {
+                case "0": break;
+
+                case "1":
+                    Instantiate(enemyTypes[0], new Vector2(pos.x + (5 * 16), pos.y - (3 * 16)), Quaternion.identity);
+                    Instantiate(enemyTypes[0], new Vector2(pos.x + (9 * 16), pos.y - (3 * 16)), Quaternion.identity);
+                    Instantiate(enemyTypes[0], new Vector2(pos.x + (13 * 16), pos.y - (3 * 16)), Quaternion.identity);
+                    break;
+
+                case "2":
+                    Instantiate(enemyTypes[0], new Vector2(pos.x + (7 * 16), pos.y - (3 * 16)), Quaternion.identity);
+                    Instantiate(enemyTypes[0], new Vector2(pos.x + (10 * 16), pos.y - (3 * 16)), Quaternion.identity);
+                    break;
+
+                case "3":
+                    Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (6 * 16)), Quaternion.identity);
+                    Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                    break;
+
+                case "4":
+                    Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                    Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                    break;
+
+                case "5": break;
+
+                case "6": break;
+
+                case "7": break;
+
+                case "8":
+                    Instantiate(enemyTypes[1], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                    break;
+
+                case "9":
+                    Instantiate(enemyTypes[1], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                    break;
+
+                default: break;
+
+            }
+
         }
 
 
 
         //SetupScene initializes our level and calls the previous functions to lay out the game board
-        public void SetupScene(int level)
+        public void SetupScene()
         {
-            //Creates the outer walls and floor.
-            BoardSetup();
-
             //Reset our list of gridpositions.
             InitialiseDataStructures();
 
-            GenerateMap(foodTiles, enemyTiles, wallTiles);
+            //Generate the random level
+            GenerateMap(fantasyStartRooms, fantasyEndRooms, fantasyNorthRooms, fantasySouthRooms, fantasyEastRooms, fantasyWestRooms, scienceStartRooms, scienceEndRooms, scienceNorthRooms, scienceSouthRooms, scienceEastRooms, scienceWestRooms);
 
-            //Instantiate the exit tile in the upper right hand corner of our game board
-            Instantiate(exit, new Vector3(newCols - 1, newRows - 1, 0f), Quaternion.identity);
         }
     }
 }
