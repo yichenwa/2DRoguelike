@@ -1,6 +1,6 @@
 2D Roguelike v0.1.0 readme
 
-To execute this program:
+To execute this program from Windows:
 
 1. Go to the root directory
 2. Download 2D Roguelike Prototype.exe
@@ -9,5 +9,11 @@ To execute this program:
 5. Ensure that the 2D Roguelike Prototype_Data folder and the 2D Roguelike Prototype.exe file are in the same directory (for example both on your computer's desktop)
 6. Double click 2D Roguelike Prototype.exe to lauch the game and hit Play!
 
-The middle button starts the game. Arrow keys to move. Don't get hit! Walls block movement; two collisions with the enemy will send you back to the  main menu.
-(more functionality to come)
+The procedure is the same for any system that can run a .exe file.
+
+Key bindings:
+r: parries attacks, giving the player about a half-second of invincibility.
+t: melee attack, which replenishes 1 ranged attack ammo with a successful hit.
+y: ranged attack, which starts with 2 ammo, and can increase to a maximum of 7. Fires laterally.
+f: swaps dimensions, between a science fiction lab and a fantasy cave setting. The rooms have slightly different layouts but the overall map is the same.
+w,a,s,d: move up,left,down,right respectively
