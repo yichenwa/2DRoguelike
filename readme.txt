@@ -21,4 +21,4 @@ f: swaps dimensions, between a science fiction lab and a fantasy cave setting. T
 w,a,s,d: move up,left,down,right respectively
 p: bring up the pause menu.
 
-Collaboration Phase: Hello this is Jerry the Collaborator. 
+Collaboration Phase: Hi this is Jerry the collaborator. 
