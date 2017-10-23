@@ -20,3 +20,5 @@ y: ranged attack, which starts with 2 ammo, and can increase to a maximum of 7. 
 f: swaps dimensions, between a science fiction lab and a fantasy cave setting. The rooms have slightly different layouts but the overall map is the same (short delay before reuse).
 w,a,s,d: move up,left,down,right respectively
 p: bring up the pause menu.
+
+Collaboration Phase: Hi this is Jerry the collaborator. 
