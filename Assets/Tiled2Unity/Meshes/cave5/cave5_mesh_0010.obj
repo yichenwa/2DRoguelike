@@ -1,21 +1,33 @@
 ﻿# Tiled2Unity generated file. Do not modify by hand.
 # Wavefront file for 'cave5_mesh_0010.obj'
 
-# Vertices (Count = 8)
+# Vertices (Count = 16)
 v 0 -80 0
 v -16 -80 0
 v -16 -64 0
 v 0 -64 0
+v -16 -80 0
+v -32 -80 0
+v -32 -64 0
+v -16 -64 0
 v 0 -96 0
 v -16 -96 0
 v -16 -80 0
 v 0 -80 0
+v -16 -96 0
+v -32 -96 0
+v -32 -80 0
+v -16 -80 0
 
-# Texture cooridinates (Count = 4)
+# Texture cooridinates (Count = 8)
 vt 0.9375 0.9375
 vt 1 0.9375
 vt 1 1
 vt 0.9375 1
+vt 0.625 0.9375
+vt 0.6875 0.9375
+vt 0.6875 1
+vt 0.625 1
 
 # Normal
 vn 0 0 -1
@@ -25,5 +37,7 @@ g cave5_mesh_0010
 
 # Faces
 f 1/1/1 2/2/1 3/3/1 4/4/1
-f 5/1/1 6/2/1 7/3/1 8/4/1
+f 5/5/1 6/6/1 7/7/1 8/8/1
+f 9/1/1 10/2/1 11/3/1 12/4/1
+f 13/5/1 14/6/1 15/7/1 16/8/1
 
