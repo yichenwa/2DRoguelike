@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1345540166200554}
+  m_IsPrefabParent: 1
+--- !u!1 &1345540166200554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4628618494267378}
+  - component: {fileID: 114602546456127920}
+  - component: {fileID: 114677964244575048}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4628618494267378
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1345540166200554}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 110.62454, y: -91.048744, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114602546456127920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1345540166200554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b7d7414f4f1ab04dadfa7d91bc0ce72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boardScript: {fileID: 0}
+--- !u!114 &114677964244575048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1345540166200554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c63f73331e7d94abb50d50fab6eefa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fantasyStartRooms:
+  - {fileID: 125612, guid: 35350c816d17e46d8ba12de280a0a6ec, type: 2}
+  fantasyNormalRooms:
+  - {fileID: 199738, guid: fd14eb262db6e47d184259020e7b28db, type: 2}
+  - {fileID: 145784, guid: bd051461c72fd48cf97ac1c2c108dcac, type: 2}
+  - {fileID: 185502, guid: 85f7bbf40015041f080fa8ab49ef161f, type: 2}
+  - {fileID: 161848, guid: 1bd4b66516c8b410296d1f93cb989da5, type: 2}
+  - {fileID: 184160, guid: 2bb3d2631fc2d4edfb5d99d7bfdc939e, type: 2}
+  - {fileID: 137184, guid: d97185abaa42645c39a25268fb0894ad, type: 2}
+  fantasyEndRooms:
+  - {fileID: 159092, guid: d55e0f823e06c4004b5f8e1b74ccf0d4, type: 2}
+  fantasyKeyAndLockRooms:
+  - {fileID: 118530, guid: 9f9332e29b2354e0f876321f209de7ef, type: 2}
+  - {fileID: 143680, guid: 125ae7b92270743099d7ad7cc0e5f1fc, type: 2}
+  scienceStartRooms:
+  - {fileID: 182508, guid: 1605746a0b4f94896b4d70864e4e00d0, type: 2}
+  scienceNormalRooms:
+  - {fileID: 163418, guid: f6de23d4661e6455eac4eedcd5bec13e, type: 2}
+  - {fileID: 150564, guid: ad57a8dfad9104e3c94a26fa3ba88f4e, type: 2}
+  - {fileID: 157844, guid: 5bdc76a9c6be147efa6a1abc77ed1ef6, type: 2}
+  - {fileID: 188838, guid: 76b788b918cac4a5b8b0d43a6301e9ca, type: 2}
+  - {fileID: 168052, guid: 41243b4e8cf5c4229a2ad04a359e4e8f, type: 2}
+  - {fileID: 169798, guid: 045b1c04ba9b647a186a6bb987176609, type: 2}
+  scienceEndRooms:
+  - {fileID: 159134, guid: 12fe59522dc7340e58b81215385efc35, type: 2}
+  scienceKeyAndLockRooms:
+  - {fileID: 170028, guid: 141fcd877114046b78434ec81002bfb6, type: 2}
+  - {fileID: 199994, guid: 6f8b0731f1f964a18a290c83f88147e5, type: 2}
+  fantasyEnemies:
+  - {fileID: 1724187573435196, guid: 1a5727881bb0543c485759a7cc8355e7, type: 2}
+  - {fileID: 1370431305046420, guid: ba970af33403a4f0eba2c6bc1fcc8e8c, type: 2}

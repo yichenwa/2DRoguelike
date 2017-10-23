@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: a874cd77475586e43bda51f21f99f7eb
+timeCreated: 1507484802
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: ShopAndHealthbar_0
+    21300002: ShopAndHealthbar_1
+    21300004: ShopAndHealthbar_2
+    21300006: ShopAndHealthbar_3
+    21300008: ShopAndHealthbar_4
+    21300010: ShopAndHealthbar_5
+    21300012: ShopAndHealthbar_6
+    21300014: ShopAndHealthbar_7
+    21300016: ShopAndHealthbar_8
+    21300018: ShopAndHealthbar_9
+    21300020: ShopAndHealthbar_10
+    21300022: ShopAndHealthbar_11
+    21300024: ShopAndHealthbar_12
+    21300026: ShopAndHealthbar_13
+    21300028: ShopAndHealthbar_14
+    21300030: ShopAndHealthbar_15
+    21300032: ShopAndHealthbar_16
+    21300034: ShopAndHealthbar_17
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: 0.05
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Tizen
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Samsung TV
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ShopAndHealthbar_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 135
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_1
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 134
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 138
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_3
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 133
+        width: 13
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_4
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 131
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_5
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 103
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_6
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 100
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_7
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 103
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_8
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 105
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_9
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 107
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_10
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 76
+        width: 19
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_11
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 66
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_12
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 68
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_13
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 74
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_14
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 74
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_15
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 42
+        width: 48
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_16
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 42
+        width: 48
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ShopAndHealthbar_17
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 9
+        width: 50
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline:
+    - - {x: -72, y: -55}
+      - {x: -74, y: -57}
+      - {x: -74, y: -71}
+      - {x: -72, y: -73}
+      - {x: -22, y: -73}
+      - {x: -20, y: -71}
+      - {x: -20, y: -57}
+      - {x: -22, y: -55}
+    - - {x: -71, y: -24}
+      - {x: -73, y: -26}
+      - {x: -73, y: -38}
+      - {x: -71, y: -40}
+      - {x: -23, y: -40}
+      - {x: -21, y: -38}
+      - {x: -21, y: -26}
+      - {x: -23, y: -24}
+    - - {x: -6, y: -24}
+      - {x: -8, y: -26}
+      - {x: -8, y: -38}
+      - {x: -6, y: -40}
+      - {x: 42, y: -40}
+      - {x: 44, y: -38}
+      - {x: 44, y: -26}
+      - {x: 42, y: -24}
+    - - {x: -36, y: 11}
+      - {x: -44, y: -2}
+      - {x: -44, y: -14}
+      - {x: -43, y: -16}
+      - {x: -18, y: -16}
+      - {x: -18, y: 3}
+      - {x: -26, y: 11}
+    - - {x: 1, y: 7}
+      - {x: -8, y: 7}
+      - {x: -13, y: 1}
+      - {x: -13, y: -6}
+      - {x: -10, y: -11}
+      - {x: 0, y: -14}
+      - {x: 6, y: -14}
+      - {x: 11, y: -10}
+      - {x: 11, y: 1}
+    - - {x: 23, y: 9}
+      - {x: 21, y: 4}
+      - {x: 21, y: -1}
+      - {x: 30, y: -8}
+      - {x: 32, y: -8}
+      - {x: 41, y: -1}
+      - {x: 41, y: 4}
+      - {x: 39, y: 9}
+    - - {x: 55, y: 9}
+      - {x: 55, y: -8}
+      - {x: 72, y: -8}
+      - {x: 72, y: 9}
+    - - {x: -72, y: 11}
+      - {x: -77, y: 9}
+      - {x: -77, y: 3}
+      - {x: -74, y: -5}
+      - {x: -71, y: -6}
+      - {x: -56, y: -6}
+      - {x: -54, y: -3}
+      - {x: -54, y: 10}
+      - {x: -55, y: 11}
+    - - {x: -43, y: 18}
+      - {x: -18, y: 18}
+      - {x: -18, y: 38}
+      - {x: -19, y: 42}
+      - {x: -40, y: 42}
+      - {x: -43, y: 33}
+    - - {x: -62, y: 42}
+      - {x: -76, y: 42}
+      - {x: -78, y: 41}
+      - {x: -78, y: 21}
+      - {x: -54, y: 21}
+      - {x: -53, y: 23}
+      - {x: -53, y: 32}
+      - {x: -59, y: 40}
+    - - {x: -9, y: 42}
+      - {x: -9, y: 29}
+      - {x: -7, y: 24}
+      - {x: -5, y: 21}
+      - {x: 3, y: 21}
+      - {x: 9, y: 22}
+      - {x: 9, y: 42}
+    - - {x: 40, y: 39}
+      - {x: 25, y: 39}
+      - {x: 23, y: 38}
+      - {x: 23, y: 28}
+      - {x: 24, y: 23}
+      - {x: 39, y: 23}
+      - {x: 42, y: 28}
+      - {x: 42, y: 35}
+    - - {x: 57, y: 40}
+      - {x: 55, y: 38}
+      - {x: 55, y: 27}
+      - {x: 57, y: 25}
+      - {x: 74, y: 25}
+      - {x: 76, y: 27}
+      - {x: 76, y: 38}
+      - {x: 74, y: 40}
+    - - {x: 65, y: 74}
+      - {x: 61, y: 74}
+      - {x: 54, y: 63}
+      - {x: 54, y: 60}
+      - {x: 62, y: 49}
+      - {x: 64, y: 49}
+      - {x: 66, y: 50}
+      - {x: 78, y: 59}
+      - {x: 78, y: 63}
+      - {x: 75, y: 70}
+    - - {x: 29, y: 79}
+      - {x: 26, y: 76}
+      - {x: 23, y: 64}
+      - {x: 23, y: 58}
+      - {x: 28, y: 51}
+      - {x: 37, y: 51}
+      - {x: 40, y: 57}
+      - {x: 40, y: 69}
+      - {x: 35, y: 79}
+    - - {x: -25, y: 72}
+      - {x: -40, y: 72}
+      - {x: -41, y: 69}
+      - {x: -37, y: 53}
+      - {x: -35, y: 52}
+      - {x: -28, y: 52}
+      - {x: -22, y: 60}
+      - {x: -22, y: 67}
+    - - {x: -65, y: 75}
+      - {x: -75, y: 64}
+      - {x: -75, y: 57}
+      - {x: -71, y: 53}
+      - {x: -66, y: 53}
+      - {x: -53, y: 62}
+      - {x: -53, y: 72}
+      - {x: -54, y: 75}
+    - - {x: -10, y: 71}
+      - {x: -10, y: 58}
+      - {x: -8, y: 56}
+      - {x: 0, y: 56}
+      - {x: 10, y: 62}
+      - {x: 10, y: 71}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
