@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2D Roguelike Project- Combat, Generation, Animation, Exits", "2D Roguelike Project- Combat, Generation, Animation, Exits.csproj", "{3761A81A-9FE2-9A83-88D7-0B0A93B73C65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2D Roguelike Project- Combat, Generation, Animation, Exits.Editor", "2D Roguelike Project- Combat, Generation, Animation, Exits.Editor.csproj", "{C771EDB5-E736-BFDB-A32E-AB070B0E64BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3761A81A-9FE2-9A83-88D7-0B0A93B73C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3761A81A-9FE2-9A83-88D7-0B0A93B73C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3761A81A-9FE2-9A83-88D7-0B0A93B73C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3761A81A-9FE2-9A83-88D7-0B0A93B73C65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C771EDB5-E736-BFDB-A32E-AB070B0E64BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C771EDB5-E736-BFDB-A32E-AB070B0E64BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C771EDB5-E736-BFDB-A32E-AB070B0E64BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C771EDB5-E736-BFDB-A32E-AB070B0E64BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

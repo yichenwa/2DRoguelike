@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Temporary", "Temporary.csproj", "{30AEAE8C-F78E-FC7B-0F6B-104326EFC2F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Temporary.Editor", "Temporary.Editor.csproj", "{2C08DE79-3A0D-9FE7-29E3-7B5225185966}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30AEAE8C-F78E-FC7B-0F6B-104326EFC2F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30AEAE8C-F78E-FC7B-0F6B-104326EFC2F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30AEAE8C-F78E-FC7B-0F6B-104326EFC2F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30AEAE8C-F78E-FC7B-0F6B-104326EFC2F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C08DE79-3A0D-9FE7-29E3-7B5225185966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C08DE79-3A0D-9FE7-29E3-7B5225185966}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C08DE79-3A0D-9FE7-29E3-7B5225185966}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C08DE79-3A0D-9FE7-29E3-7B5225185966}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,258 @@
+fileFormatVersion: 2
+guid: e53872176a94c460ebf57fbcefd131d5
+timeCreated: 1507409062
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: DieAndParry_0
+    21300002: DieAndParry_1
+    21300004: DieAndParry_2
+    21300006: DieAndParry_3
+    21300008: DieAndParry_4
+    21300010: DieAndParry_5
+    21300012: DieAndParry_6
+    21300014: DieAndParry_7
+    21300016: DieAndParry_8
+    21300018: DieAndParry_9
+    21300020: DieAndParry_10
+    21300022: DieAndParry_11
+    21300024: DieAndParry_12
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DieAndParry_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 126
+        width: 33
+        height: 57
+      alignment: 9
+      pivot: {x: 0.8196523, y: 0.43831274}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DieAndParry_1
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 126
+        width: 33
+        height: 57
+      alignment: 9
+      pivot: {x: 0.8196522, y: 0.43831274}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DieAndParry_2
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 125
+        width: 35
+        height: 57
+      alignment: 9
+      pivot: {x: 0.8265019, y: 0.44602403}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DieAndParry_3
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 124
+        width: 35
+        height: 59
+      alignment: 9
+      pivot: {x: 0.81394434, y: 0.42550504}
+      border: {x: 0, y: 0, z: 1, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DieAndParry_4
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 122
+        width: 38
+        height: 61
+      alignment: 9
+      pivot: {x: 0.82385856, y: 0.48558944}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DieAndParry_5
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 122
+        width: 35
+        height: 61
+      alignment: 9
+      pivot: {x: 0.85092074, y: 0.5159352}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DieAndParry_6
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 121
+        width: 32
+        height: 62
+      alignment: 9
+      pivot: {x: 0.84337616, y: 0.5132424}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DieAndParry_7
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 121
+        width: 42
+        height: 65
+      alignment: 9
+      pivot: {x: 0.83487445, y: 0.5338097}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DieAndParry_8
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 122
+        width: 34
+        height: 62
+      alignment: 9
+      pivot: {x: 0.87488693, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DieAndParry_9
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 26
+        width: 33
+        height: 57
+      alignment: 9
+      pivot: {x: 0.80633336, y: 0.43831286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DieAndParry_10
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 26
+        width: 56
+        height: 57
+      alignment: 9
+      pivot: {x: 0.7119123, y: 0.4614456}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DieAndParry_11
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 26
+        width: 51
+        height: 57
+      alignment: 9
+      pivot: {x: 0.6809797, y: 0.44602376}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DieAndParry_12
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 26
+        width: 38
+        height: 57
+      alignment: 9
+      pivot: {x: 0.6387963, y: 0.50771105}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
