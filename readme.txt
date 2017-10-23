@@ -14,9 +14,11 @@ To execute this program on a Windows machine:
 5. Double click BetaReleaesExec to lauch the game and hit Play!
 
 Key bindings:
-r: parries attacks, giving the player about a half-second of invincibility (short delay before reuse).
-t: melee attack, which replenishes 1 ranged attack ammo with a successful hit.
-y: ranged attack, which starts with 2 ammo, and can increase to a maximum of 7. Fires laterally.
-f: swaps dimensions, between a science fiction lab and a fantasy cave setting. The rooms have slightly different layouts but the overall map is the same (short delay before reuse).
-w,a,s,d: move up,left,down,right respectively
-p: bring up the pause menu.
+R: parries attacks, giving the player about a half-second of invincibility (short delay before reuse).
+T: melee attack, which replenishes 1 ranged attack ammo with a successful hit.
+Y: ranged attack, which starts with 2 ammo, and can increase to a maximum of 7. Fires laterally.
+F: swaps dimensions, between a science fiction lab and a fantasy cave setting. The rooms have slightly different layouts but the overall map is the same (short delay before reuse).
+W,A,S,D: move up,left,down,right respectively
+P: bring up the pause menu.
+
+Edit?
