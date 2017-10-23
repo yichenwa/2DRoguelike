@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class EnemyScript : MonoBehaviour
 {
 
@@ -17,31 +18,38 @@ public class EnemyScript : MonoBehaviour
     private Rigidbody2D enemyBody; //Used to control the enemy body 
     private bool canWalk = true; //Will be used to make the enemy pause if a condition is met
     private bool canDamage = true;
+    private bool playerInRange;
+    private CircleCollider2D enemyRange;
     private Animator animator;
-    public Inventory trigger;
+    private Vector3 savedPosition;
     public int enemycount;
-    public PlayerScore score;   //Used to keep track of the enemies slain -> clinton (*See PlayerScore.cs*)
+    public PlayerScore score;
+    public Inventory trigger;
 
     // Used for initialization
     void Start()
     {
-        score = FindObjectOfType<PlayerScore>();
-        player = FindObjectOfType<PlayerScript2>();
         trigger = FindObjectOfType<Inventory>();
+        player = FindObjectOfType<PlayerScript2>();
+        score = FindObjectOfType<PlayerScore>();
         enemyBody = FindObjectOfType<Rigidbody2D>();
         animator = FindObjectOfType<Animator>();
         enemyBody.freezeRotation = true; //IMPORTANT! ENEMY MUST BE KINEMATIC
+        playerInRange = false;
+        //enemyRange.enabled = true;
 
     }
 
     //Main function for the enemy to update
     void FixedUpdate()
     {
+        savedPosition = transform.position;
+
         if (canWalk == false)
         {
             StartCoroutine(walkDelay()); //After he's been stopped, call the function to restart his walking
         }
-        if (canWalk == true)  //Move towards the player creepily
+        if (canWalk == true && playerInRange == true)  //Move towards the player creepily
         {
             playerPosition = (player.transform.position);
             transform.position = Vector2.MoveTowards(transform.position, playerPosition, enemySpeed * Time.deltaTime);
@@ -50,7 +58,7 @@ public class EnemyScript : MonoBehaviour
 				animator.SetTrigger ("enemy1 left");
 			}*/
         }
-        if (enemyHP <= 0)
+        if (enemyHP <= 0) //Kills the enemy if his health drops to 0 or les
         {
             score.enemies++;
             this.gameObject.SetActive(false);
@@ -65,25 +73,41 @@ public class EnemyScript : MonoBehaviour
             player.playerHP -= 50; //Damage done, can be adjusted
             canDamage = false;
             StartCoroutine(damageDelay());
+            transform.position = savedPosition;
         }
         canWalk = false;
     }
 
-    public void takeDamage(float damage)
+    public void takeDamage(float damage) //Used as a reference in player scripts, to hurt the enemy
     {
         damage = trigger.strength;
         enemyHP -= damage;
     }
 
-    IEnumerator walkDelay() //Used to get the enemy walking after a collision
+    IEnumerator walkDelay() //Used to get the enemy walking after a collision, with delay of course
     {
         yield return new WaitForSeconds(.5f);
         canWalk = true;
     }
 
-    IEnumerator damageDelay()
+    IEnumerator damageDelay() //Used to limit how quick the enemy can damage the player if standing adjacent to him
     {
         yield return new WaitForSeconds(.5f);
         canDamage = true;
+    }
+
+    void OnTriggerEnter2D(Collider2D thing) //Used to see if the player is close, to initialize movement
+    {
+        if (thing.gameObject.tag == "Player")
+        {
+            playerInRange = true;
+        }
+    }
+    void OnTriggerExit2D(Collider2D thing) //Used to stop the enemy from moving if th player is not in attack range
+    {
+        if (thing.gameObject.tag == "Player")
+        {
+            playerInRange = false;
+        }
     }
 }

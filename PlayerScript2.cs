@@ -16,25 +16,27 @@ public class PlayerScript2 : MonoBehaviour
     public float playerSpeed = 3f; //Used to set the players speed when moving
     public float playerHP = 100; //Used to store adjust and update the players health
     public bool playerdead;
-    public float maxHP = 100;
-    public float parryTime = 2f;
-    private string directionString = "";
-    public float ammo = 2;
+    public float maxHP = 100; //Used for the health bar to calc currentHealth/maxHealth
+    public float parryTime = 2f; //Sets how long a parry will last for
+    private string directionString = ""; //Used for melee attack direction
+    public float ammo = 2; //Ammo reserve
     private Rigidbody2D playerBody; //Used to find and adjust the body of the player
     private Animator animator; //Used to set animation triggers off depending on movement
-    public bool canTakeDamage = true;
-    public bool canParryAgain = true;
-    private Vector2 currentPosition;
-    private bool inFantasyWorld = true;
+    public bool canTakeDamage = true; //Used with parry
+    public bool canParryAgain = true; //Used with parry, prevents spamming
+    private Vector2 currentPosition; //Used to adjust position with world switching
+    private bool inFantasyWorld = true; //Determines which world the player is in 
+    private bool canTeleport = true; //Used to limit teleporting between worlds
     public float strength;
-    public float coins = 500;             //currency the player will use 
+    public float coins = 500;
 
     // Used for initialization
     void Start()
     {
-        playerBody = FindObjectOfType<Rigidbody2D>();
+        playerBody = FindObjectOfType<Rigidbody2D>(); //Initializes the player body
         playerBody.freezeRotation = true; //IMPORTANT! PLAYER TYPE MUST BE DYNAMIC WITH FREEZE ROTATION SELECTED
-        animator = GetComponent<Animator>();
+        //animator = FindObjectOfType<Animator>();
+        animator = GetComponent<Animator>(); //Finds the animator controller
         canTakeDamage = true;
         directionString = "d";
         currentPosition.Set(transform.position.x, transform.position.y);
@@ -52,9 +54,11 @@ public class PlayerScript2 : MonoBehaviour
             StartCoroutine(preventUnlimitedParry());
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && canTeleport == true) //Handles teleportation, binds to F key for now
         {
-            if(inFantasyWorld == true)
+            canTeleport = false;
+
+            if (inFantasyWorld == true)
             {
                 transform.position = new Vector3(transform.position.x + 2000, transform.position.y, transform.position.z);
                 inFantasyWorld = false;
@@ -64,6 +68,8 @@ public class PlayerScript2 : MonoBehaviour
                 transform.position = new Vector3(transform.position.x - 2000, transform.position.y, transform.position.z);
                 inFantasyWorld = true;
             }
+
+            StartCoroutine(teleportDelay());
         }
 
         Vector2 targetVelocity = new Vector2(Input.GetAxisRaw("Horizontal"),
@@ -93,18 +99,18 @@ public class PlayerScript2 : MonoBehaviour
             directionString = "d";
         }
 
-       
-        //Kills the player if his health drops below 0
-        if (playerHP == 0) {
-            animator.SetTrigger("die");
-            playerdead = true;  //used in playerScore as a means to add up score.
 
+        //Kills the player if his health drops below 0
+        if (playerHP == 0)
+        {
+            animator.SetTrigger("die");
+            playerdead = true;
         }
 
         if (playerHP < 0)
         {
-            playerdead = true;
-            //SceneManager.LoadScene("ScoreScreen"); instead of changing screen will open up score board
+            this.gameObject.SetActive(false);
+            //SceneManager.LoadScene("MenuScreen");
         }
         currentPosition.Set(transform.position.x, transform.position.y);
     }
@@ -120,16 +126,22 @@ public class PlayerScript2 : MonoBehaviour
         canParryAgain = true;                  //prevents spamming of the parry button for invincibility
     }
 
-    public string getDirectionString()
+    IEnumerator teleportDelay() //Limits how often the player can teleport with the f key
+    {
+        yield return new WaitForSeconds(3f);
+        canTeleport = true;
+    }
+
+    public string getDirectionString() //Used for attacking. Determines direction to attack in 
     {
         return directionString;
     }
 
-    public bool getParrying()
+    public bool getParrying() //Used for UI, attacking to see if the player is parrying or not
     {
         return !canParryAgain;
     }
-    public Vector2 getCurrentPosition()
+    public Vector2 getCurrentPosition() //Returns the players current position on the map
     {
         return currentPosition;
     }
