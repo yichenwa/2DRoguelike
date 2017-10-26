@@ -13,12 +13,14 @@ public class shooting : MonoBehaviour {
 	//public float shotDelay = 5f; 
 	//private bool shotFired = false;
 	private PlayerScript2 player;
+	private SpriteRenderer bulletOrientation;
 
 	void Start () 
 	{
         //animator = FindObjectOfType<Animator> ();
         animator = GetComponent<Animator>(); //Finds the animator component
 		player = FindObjectOfType<PlayerScript2> (); //Finds the players location 
+		bulletOrientation = Bullet.GetComponent<SpriteRenderer>();
 
 	}
 
@@ -30,11 +32,13 @@ public class shooting : MonoBehaviour {
 			//animator.SetTrigger ("attack"); //We will need left, right, up, down attacking animations
 			if (player.getDirectionString () == "l") {
 				leftPositionFix.Set (transform.position.x - leftOffset, transform.position.y, -1f); //Used to fix shooting left issues
+				bulletOrientation.flipX = true;
 				Instantiate (Bullet, leftPositionFix,  new Quaternion(0, 0, 0, 0));
 				animator.SetTrigger ("shootleft");
 			} 
 			else if (player.getDirectionString() == "r")
 			{
+				bulletOrientation.flipX = false;
 				Instantiate (Bullet, transform.position, new Quaternion (0, 0, 0, 0));
 				animator.SetTrigger ("shootright");
 			}
