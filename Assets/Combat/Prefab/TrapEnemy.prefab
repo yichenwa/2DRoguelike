@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61105524655280718}
   - component: {fileID: 50290646114821590}
   - component: {fileID: 58019788157255950}
-  - component: {fileID: 114814657654512108}
+  - component: {fileID: 114153227960665836}
   m_Layer: 0
   m_Name: TrapEnemy
   m_TagString: Enemy
@@ -122,7 +122,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114814657654512108
+--- !u!114 &114153227960665836
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1142182849323538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1cc31a435b4f4b7fb4a8079467c1896, type: 3}
+  m_Script: {fileID: 11500000, guid: 9cd53405a931d4deab92065644dba518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeed: 65
