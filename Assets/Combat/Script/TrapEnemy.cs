@@ -1,4 +1,4 @@
-﻿//Mike Fortin, EnemyScript
+//Mike Fortin, EnemyScript
 //Handles the basic enemy mechanics
 using System.Collections;
 using System.Collections.Generic;
@@ -8,11 +8,11 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(CircleCollider2D))]
-public class EnemyScript : MonoBehaviour
+public class TrapEnemy : MonoBehaviour
 {
 
-    public float enemySpeed = .75f; //Used to set the enemies walking speed
-    public float enemyHP = 150;
+    public float enemySpeed = 65f; //Used to set the enemies walking speed
+    public float enemyHP = 100;
 	public float strength = 50;
     private Vector2 playerPosition; //Will be used to locate the player's location
     private PlayerScript2 player; //Finds the player object by finding the PlayerScript2 object
@@ -24,6 +24,14 @@ public class EnemyScript : MonoBehaviour
     private Animator animator;
 	private Vector3 savedPosition;
 
+    //Modify the below parameters to change the behavior of the trap enemy
+    private float triggerDistance = 65;   // How close the player must be to be triggered
+    private float lungeDistance = 65; // How far to go when chasing the player
+
+    // Used for trap mechanics
+    private Vector2 spawnSpot, goalSpot; //Where the enemy spawned and where it will try to go to when triggered
+    private bool triggered = false; // Set to true when the 'trap' is triggered
+
     // Used for initialization
     void Start()
     {
@@ -32,27 +40,47 @@ public class EnemyScript : MonoBehaviour
         animator = FindObjectOfType<Animator>();
         enemyBody.freezeRotation = true; //IMPORTANT! ENEMY MUST BE KINEMATIC
 		playerInRange = false;
-		//enemyRange.enabled = true;
-
+        spawnSpot = transform.position;
+        goalSpot = spawnSpot;
     }
 
     //Main function for the enemy to update
     void FixedUpdate()
     {
+		
 		savedPosition = transform.position;
+        playerPosition = player.transform.position;
 
         if (canWalk == false)
         {
             StartCoroutine(walkDelay()); //After he's been stopped, call the function to restart his walking
         }
-		if (canWalk == true && playerInRange == true)  //Move towards the player creepily
+        if (canWalk == true)
         {
-            playerPosition = (player.transform.position);
-            transform.position = Vector2.MoveTowards(transform.position, playerPosition, enemySpeed * Time.deltaTime);
-            /*if (transform.position.x < 0) 
-			{
-				animator.SetTrigger ("enemy1 left");
-			}*/
+            // Always "move" towards the goal spot. By default this location is the spawn position (so no movement)
+            transform.position = Vector2.MoveTowards(transform.position, goalSpot, enemySpeed * Time.deltaTime);
+
+            // Player has stepped on our line and is within the trigger distance, we are not triggered and we are in the spawn position
+            if ((Mathf.Abs(transform.position.x - playerPosition.x) < 5 || Mathf.Abs(transform.position.y - playerPosition.y) < 5)
+                && !triggered && 
+                transform.position.x == spawnSpot.x && transform.position.y == spawnSpot.y && 
+                Vector3.Distance(transform.position,playerPosition)<triggerDistance)
+            {
+                triggered = true;
+                goalSpot = spawnSpot;
+                if (Mathf.Abs(transform.position.x - playerPosition.x) < 5)
+                    goalSpot.y -= lungeDistance * ((transform.position.y - playerPosition.y) / Mathf.Abs(transform.position.y - playerPosition.y));
+                if (Mathf.Abs(transform.position.y - playerPosition.y) < 5)
+                    goalSpot.x -= lungeDistance * ((transform.position.x - playerPosition.x) / Mathf.Abs(transform.position.x - playerPosition.x));
+            }
+        }
+		if (triggered == true) //If we are triggered and at the goal spot, reset and go back to spawn spot
+        {
+            if (transform.position.x==goalSpot.x && transform.position.y==goalSpot.y)
+            {
+                triggered = false;
+                goalSpot = spawnSpot;
+            }
         }
         if (enemyHP <= 0) //Kills the enemy if his health drops to 0 or les
         {
@@ -70,7 +98,9 @@ public class EnemyScript : MonoBehaviour
             StartCoroutine(damageDelay());
 			transform.position = savedPosition;
         }
-        canWalk = false;
+			canWalk = false;
+			triggered = false;
+			goalSpot = spawnSpot;
     }
 
     public void takeDamage(float damage) //Used as a reference in player scripts, to hurt the enemy
@@ -89,19 +119,4 @@ public class EnemyScript : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         canDamage = true;
     }
-
-	void OnTriggerEnter2D(Collider2D thing) //Used to see if the player is close, to initialize movement
-	{
-		if (thing.gameObject.tag == "Player") 
-		{
-			playerInRange = true;
-		}
-	}
-	void OnTriggerExit2D(Collider2D thing) //Used to stop the enemy from moving if th player is not in attack range
-	{
-		if (thing.gameObject.tag == "Player") 
-		{
-			playerInRange = false;
-		}
-	}
 }

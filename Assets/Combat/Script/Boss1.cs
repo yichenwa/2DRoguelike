@@ -12,6 +12,7 @@ public class Boss1 : MonoBehaviour {
 
 	public float enemySpeed = 1.5f; //Used to set the enemies walking speed
 	public float enemyHP = 1000;
+	public float strength = 100;
 	private Vector2 playerPosition; //Will be used to locate the player's location
 	private PlayerScript2 player; //Finds the player object by finding the PlayerScript2 object
 	private Rigidbody2D enemyBody; //Used to control the enemy body 
@@ -61,7 +62,7 @@ public class Boss1 : MonoBehaviour {
 	void OnCollisionStay2D(Collision2D thing) //If the enemy collides with the player, inflict damage to him
 	{
 		if (thing.gameObject.name == "Player" && player.canTakeDamage == true && canDamage == true) { //The new canTakeDamage works // with parrying
-			player.playerHP -= 100; //Damage done, can be adjusted
+			player.playerHP -= strength; //Damage done, can be adjusted
 			canDamage = false;
 			StartCoroutine (damageDelay ());
 		} 
