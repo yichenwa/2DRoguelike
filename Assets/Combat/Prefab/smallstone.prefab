@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4612094029450734}
   - component: {fileID: 212306598296321382}
   - component: {fileID: 95947620337480708}
-  - component: {fileID: 114224900126577624}
-  - component: {fileID: 61925739622698804}
-  - component: {fileID: 50061101700412746}
+  - component: {fileID: 114522051085952942}
+  - component: {fileID: 50556577656529244}
+  - component: {fileID: 61088610403663506}
   m_Layer: 0
   m_Name: smallstone
   m_TagString: Untagged
@@ -38,13 +38,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1295637414225412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.1, y: 1.8, z: 0}
-  m_LocalScale: {x: 35, y: 35, z: 1}
+  m_LocalPosition: {x: 1106.4543, y: 279.12515, z: 0}
+  m_LocalScale: {x: 25, y: 25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50061101700412746
+--- !u!50 &50556577656529244
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
@@ -64,7 +64,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &61925739622698804
+--- !u!61 &61088610403663506
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -74,7 +74,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 1295637414225412}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c698ff210d0c249e195e660a1cfa84b9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 34b74bc62e727488ab958e32df2a6628, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -106,7 +106,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114224900126577624
+--- !u!114 &114522051085952942
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -114,10 +114,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1295637414225412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a3090a4aa1cf4509853716925f3121a, type: 3}
+  m_Script: {fileID: 11500000, guid: ff03efb439be64a2f8f47ecabd6a7c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpeed: 60
+  BulletSpeed: 25
   strength: 50
 --- !u!212 &212306598296321382
 SpriteRenderer:
@@ -150,8 +150,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cd545e081986f49e986b1369c1c9e157, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 8ada823cc1f824c72ab7475daba3935e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
