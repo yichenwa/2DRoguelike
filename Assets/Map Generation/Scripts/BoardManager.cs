@@ -417,8 +417,118 @@ namespace Completed
         //Method will spawn enemies within a room depending on the room's particular ID.
         //Vector2 pos is an xy coordinate pair of the room having enemies spawned within it.
         //enemyTypes is an array of enemy GameObjects that can be instantiated. Currently the enemy at index 0 is a regular enemy and the enemy at index 1 is a boss enemy.
-        void spawnEnemies(Vector2 pos, GameObject[] enemyTypes, String roomID)
+       /*
+			28.10.2017 by ASSETCREW:
+			+ enemyCount = set the number of enemies to be spawned 
+			+ enemySpeedFactor = set the factor each spawned enemy's speed value has to be multiplied with
+			+ enemyHpFactor = set the factor each spawned enemy's HP value has to be multiplied with
+	   */
+	   void spawnEnemies(Vector2 pos, GameObject[] enemyTypes, String roomID)
         {
+			int enemyCount = 1;
+			float enemySpeedFactor = 1f;
+			float enemyHpFactor = 1f;
+			
+			// *** Room configuration of count, speed and hp -> change and extend as you like ***
+			
+			switch (roomID) {
+				
+				case "0": break;
+				
+				case "1":
+					enemyCount = 2;
+					enemySpeedFactor = 1.1f;
+					enemyHpFactor = 1.1f;
+					break;
+				
+				case "2":
+					enemyCount = 3;
+					enemySpeedFactor = 1.5f;
+					enemyHpFactor = 1.5f;
+					break;
+				
+				case "3":
+					enemyCount = 5;
+					enemySpeedFactor = 2f;
+					enemyHpFactor = 2f;
+					break;
+				
+				case "4": break;
+				
+				case "5": break;
+				
+				case "6": break;
+				
+				case "7": break;
+				
+				case "8": break;
+				
+				case "9": break;
+				
+				default: break;
+				
+			}
+			
+			// *** Spawning -> do not change unless truly needed ***
+			
+			List<string> spawnIndexList = new List<string>(); //needed to avoid spawning of two enemies at same position
+			float posX, posY; //values for position vector
+			string posStr; //used as index for looking up spawnIndexList
+			int retryCount; //needed to avoid potential dead lock on while condition
+			
+			for (int i=0; i < enemyCount; i++) {
+				
+				posX = Random.Range (16, (16 * 15));
+				posY = Random.Range (16, (16 * 10));
+				posStr = posX.ToString() + "," + posY.ToString();
+				retryCount = 0;
+				
+				while (spawnIndexList.Contains(posStr) && retryCount <= enemyCount) {
+					
+					posX = Random.Range (16, (16 * 15));
+					posY = Random.Range (16, (16 * 10));
+					posStr = posX.ToString() + "," + posY.ToString();
+					retryCount++;
+					
+				}
+				
+				spawnIndexList.Add (posStr);
+				
+				int enemyIndex = Random.Range (0, enemyTypes.Length);
+				GameObject enemy = Instantiate(enemyTypes[enemyIndex], new Vector2(pos.x + posX, pos.y - posY), Quaternion.identity) as GameObject;
+				
+				// ** Speed **
+				
+				if (enemy.GetComponent<EnemyScript>()) { //enemies with "EnemyScript" attached
+					
+					enemy.GetComponent<EnemyScript>().enemySpeed *= enemySpeedFactor;
+					
+				}
+				else
+				if (enemy.GetComponent<Boss1>()) { //enemies with "Boss1" attached
+					
+					enemy.GetComponent<Boss1>().enemySpeed *= enemySpeedFactor;
+					
+				}
+				
+				// ** HP **
+				
+				if (enemy.GetComponent<EnemyScript>()) { //enemies with "EnemyScript" attached
+					
+					enemy.GetComponent<EnemyScript>().enemyHP *= enemyHpFactor;
+					
+				}
+				else
+				if (enemy.GetComponent<Boss1>()) { //enemies with "Boss1" attached
+					
+					enemy.GetComponent<Boss1>().enemyHP *= enemyHpFactor;
+					
+				}
+				
+			}
+			
+			
+			/*
             //Switch statment based on room ID, this is because different rooms have different enemy placements.
             switch (roomID)
             {
@@ -465,6 +575,7 @@ namespace Completed
                 default: break;
 
             }
+			*/
 
         }
 
