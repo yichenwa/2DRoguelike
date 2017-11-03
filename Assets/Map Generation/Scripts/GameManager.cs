@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Completed;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
+    public float levelstartDelay = 3f;
     public static GameManager instance = null;
     public BoardManager boardScript;
 
+    //level and player information handling
+    private int lvl = 1;
+    public int playerCoins = 0;
     // Use this for initialization
     void Awake()
     {
@@ -26,6 +30,7 @@ public class GameManager : MonoBehaviour
         boardScript = GetComponent<BoardManager>();
 
         InitGame();     //Calls InitGame() in boardManager.
+
     }
 
     void InitGame()
@@ -33,11 +38,11 @@ public class GameManager : MonoBehaviour
         //Calls the SetupScene method found in the BoardManager script.
         //This is where the entirety of level generation takes place.
         boardScript.SetupScene();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 }

@@ -21,13 +21,17 @@ public class Boss1 : MonoBehaviour {
 	private Vector2 targetPosition;
 	private Animator animator;
 	private bool playerInRange;
+    public PlayerScore score;
+    public Inventory trigger;
 
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start () 
 	{
 		player = FindObjectOfType<PlayerScript2> ();
 		enemyBody = FindObjectOfType<Rigidbody2D> ();
-		enemyBody.freezeRotation = true;
+        score = FindObjectOfType<PlayerScore>();
+        trigger = FindObjectOfType<Inventory>();
+        enemyBody.freezeRotation = true;
 		animator = GetComponent<Animator>();
 	}
 	
@@ -50,13 +54,15 @@ public class Boss1 : MonoBehaviour {
 
 		if (enemyHP <= 0) 
 		{
-			this.gameObject.SetActive (false);
+            score.enemies++;
+            this.gameObject.SetActive (false);
 		}
 	}
 
 	public void takeDamage(float damage)
 	{
-		enemyHP -= damage;
+        damage = trigger.strength;
+        enemyHP -= damage;
 	}
 
 	void OnCollisionStay2D(Collision2D thing) //If the enemy collides with the player, inflict damage to him
