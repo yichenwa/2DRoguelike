@@ -22,6 +22,9 @@ public class EnemyScript : MonoBehaviour
 	private CircleCollider2D enemyRange;
     private Animator animator;
 	private Vector3 savedPosition;
+    public int enemycount;
+    public PlayerScore score;
+    public Inventory trigger;
 
     // Used for initialization
     void Start()
@@ -31,7 +34,9 @@ public class EnemyScript : MonoBehaviour
         animator = FindObjectOfType<Animator>();
         enemyBody.freezeRotation = true; //IMPORTANT! ENEMY MUST BE KINEMATIC
 		playerInRange = false;
-		//enemyRange.enabled = true;
+        //enemyRange.enabled = true;
+        trigger = FindObjectOfType<Inventory>();
+        score = FindObjectOfType<PlayerScore>();
 
     }
 
@@ -55,6 +60,7 @@ public class EnemyScript : MonoBehaviour
         }
         if (enemyHP <= 0) //Kills the enemy if his health drops to 0 or les
         {
+            score.enemies++;
             this.gameObject.SetActive(false);
         }
 
@@ -74,7 +80,9 @@ public class EnemyScript : MonoBehaviour
 
     public void takeDamage(float damage) //Used as a reference in player scripts, to hurt the enemy
     {
-        enemyHP -= damage;
+
+            damage = trigger.strength;
+            enemyHP -= damage;
     }
 
     IEnumerator walkDelay() //Used to get the enemy walking after a collision, with delay of course
