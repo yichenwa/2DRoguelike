@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     //level and player information handling
     private int lvl = 1;
-    public int playerCoins = 0;
+    public int playerCoins;
     // Use this for initialization
     void Awake()
     {

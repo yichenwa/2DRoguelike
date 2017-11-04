@@ -73,5 +73,7 @@ public class PlayerScore : MonoBehaviour {
         total.text = "You Died +" + totalsc;
     }
 
+   
+
 
 }

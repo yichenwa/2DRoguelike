@@ -14,7 +14,7 @@ public class BarScript : MonoBehaviour {
     [SerializeField]
     private Image parry;
     [SerializeField]
-    public int timeleft = 303;
+    public int timeleft = 301;
     [SerializeField]
     public Text timeCountDown;
     private int leveldelay;
