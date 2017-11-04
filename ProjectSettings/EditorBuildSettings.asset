@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Combat/Scenes/PlayerShop.unity
     guid: 94815e2e0bdcbc74698fa733034d0410
+  - enabled: 1
+    path: Assets/Combat/Scenes/HowToPlay.unity
+    guid: 00000000000000000000000000000000

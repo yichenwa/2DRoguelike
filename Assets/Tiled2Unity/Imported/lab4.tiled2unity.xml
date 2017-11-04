@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 11/2/2017 7:48:05 PM-->
+<!--Last exported: 10/22/2017 9:50:04 PM-->
 <Tiled2Unity version="1.0.12.4">
   <AssignMaterial mesh="lab4_mesh_0001" material="lab sperit" />
   <AssignMaterial mesh="lab4_mesh_0002" material="lab sperit" />
@@ -22,10 +22,10 @@
       <GameObject name="lab sperit" mesh="lab4_mesh_0001" sortingLayerName="" sortingOrder="0" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
-          <Path>144,-32 128,-32 128,-64 208,-64 208,-80 224,-80 224,-64 256,-64 256,0 144,0</Path>
-          <Path>48,-64 112,-64 112,0 0,0 0,-64 32,-64 32,-80 48,-80</Path>
-          <Path>256,-96 192,-96 192,-80 128,-80 128,-144 144,-144 144,-176 256,-176</Path>
-          <Path>112,-176 112,-80 64,-80 64,-96 0,-96 0,-176</Path>
+          <Path>144,-16 240,-16 240,-64 256,-64 256,0 144,0</Path>
+          <Path>16,-16 112,-16 112,0 0,0 0,-64 16,-64</Path>
+          <Path>144,-176 256,-176 256,-96 240,-96 240,-160 144,-160</Path>
+          <Path>112,-176 112,-160 16,-160 16,-96 0,-96 0,-176</Path>
         </PolygonCollider2D>
       </GameObject>
     </GameObject>
@@ -89,7 +89,7 @@
       <GameObject name="lab sperit" mesh="lab4_mesh_0010" sortingLayerName="" sortingOrder="10" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
-          <Path>64,-80 112,-80 112,-64 48,-64 48,-80 32,-80 32,-64 0,-64 0,-96 64,-96</Path>
+          <Path>16,-64 0,-64 0,-96 16,-96</Path>
         </PolygonCollider2D>
       </GameObject>
     </GameObject>
@@ -98,7 +98,7 @@
       <GameObject name="lab sperit" mesh="lab4_mesh_0011" sortingLayerName="" sortingOrder="11" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
-          <Path>128,-80 192,-80 192,-96 256,-96 256,-64 224,-64 224,-80 208,-80 208,-64 128,-64</Path>
+          <Path>256,-64 240,-64 240,-96 256,-96</Path>
         </PolygonCollider2D>
       </GameObject>
     </GameObject>
@@ -107,7 +107,7 @@
       <GameObject name="lab sperit" mesh="lab4_mesh_0012" sortingLayerName="" sortingOrder="12" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
-          <Path>144,-176 144,-144 128,-144 128,-80 112,-80 112,-176</Path>
+          <Path>144,-160 112,-160 112,-176 144,-176</Path>
         </PolygonCollider2D>
       </GameObject>
     </GameObject>
@@ -116,7 +116,7 @@
       <GameObject name="lab sperit" mesh="lab4_mesh_0013" sortingLayerName="" sortingOrder="13" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
-          <Path>128,-32 144,-32 144,0 112,0 112,-64 128,-64</Path>
+          <Path>144,0 112,0 112,-16 144,-16</Path>
         </PolygonCollider2D>
       </GameObject>
     </GameObject>
