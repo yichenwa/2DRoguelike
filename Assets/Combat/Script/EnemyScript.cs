@@ -13,7 +13,6 @@ public class EnemyScript : MonoBehaviour
 
     public float enemySpeed = .75f; //Used to set the enemies walking speed
     public float enemyHP = 150;
-	public float strength = 50;
     private Vector2 playerPosition; //Will be used to locate the player's location
     private PlayerScript2 player; //Finds the player object by finding the PlayerScript2 object
     private Rigidbody2D enemyBody; //Used to control the enemy body 
@@ -71,7 +70,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (thing.gameObject.name == "Player" && player.canTakeDamage == true && canDamage == true)
         { //The new canTakeDamage works // with parrying
-            player.playerHP -= strength; //Damage done, can be adjusted
+            player.playerHP -= 50; //Damage done, can be adjusted
             canDamage = false;
             StartCoroutine(damageDelay());
 			transform.position = savedPosition;

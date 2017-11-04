@@ -1,7 +1,7 @@
 ﻿# Tiled2Unity generated file. Do not modify by hand.
 # Wavefront file for 'lab4_mesh_0013.obj'
 
-# Vertices (Count = 8)
+# Vertices (Count = 24)
 v -112 -16 0
 v -128 -16 0
 v -128 0 0
@@ -10,12 +10,32 @@ v -128 -16 0
 v -144 -16 0
 v -144 0 0
 v -128 0 0
+v -112 -32 0
+v -128 -32 0
+v -128 -16 0
+v -112 -16 0
+v -128 -32 0
+v -144 -32 0
+v -144 -16 0
+v -128 -16 0
+v -112 -48 0
+v -128 -48 0
+v -128 -32 0
+v -112 -32 0
+v -112 -64 0
+v -128 -64 0
+v -128 -48 0
+v -112 -48 0
 
-# Texture cooridinates (Count = 4)
+# Texture cooridinates (Count = 8)
 vt 0.1 0.9
 vt 0.2 0.9
 vt 0.2 1
 vt 0.1 1
+vt 0.8 0.6
+vt 0.9 0.6
+vt 0.9 0.7
+vt 0.8 0.7
 
 # Normal
 vn 0 0 -1
@@ -26,4 +46,8 @@ g lab4_mesh_0013
 # Faces
 f 1/1/1 2/2/1 3/3/1 4/4/1
 f 5/1/1 6/2/1 7/3/1 8/4/1
+f 9/5/1 10/6/1 11/7/1 12/8/1
+f 13/5/1 14/6/1 15/7/1 16/8/1
+f 17/5/1 18/6/1 19/7/1 20/8/1
+f 21/5/1 22/6/1 23/7/1 24/8/1
 

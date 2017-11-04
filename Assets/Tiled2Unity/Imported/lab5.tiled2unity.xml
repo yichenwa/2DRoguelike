@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 11/2/2017 7:48:08 PM-->
+<!--Last exported: 10/22/2017 9:50:08 PM-->
 <Tiled2Unity version="1.0.12.4">
   <AssignMaterial mesh="lab5_mesh_0001" material="lab sperit" />
   <AssignMaterial mesh="lab5_mesh_0002" material="lab sperit" />
@@ -24,7 +24,10 @@
       <GameObject name="lab sperit" mesh="lab5_mesh_0001" sortingLayerName="" sortingOrder="0" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
-          <Path>256,-176 256,-96 224,-96 224,-64 256,-64 256,0 144,0 144,-32 112,-32 112,0 0,0 0,-64 32,-64 32,-96 0,-96 0,-176 112,-176 112,-144 144,-144 144,-176</Path>
+          <Path>144,-16 240,-16 240,-64 256,-64 256,0 144,0</Path>
+          <Path>16,-16 112,-16 112,0 0,0 0,-64 16,-64</Path>
+          <Path>144,-176 256,-176 256,-96 240,-96 240,-160 144,-160</Path>
+          <Path>112,-176 112,-160 16,-160 16,-96 0,-96 0,-176</Path>
         </PolygonCollider2D>
       </GameObject>
     </GameObject>
