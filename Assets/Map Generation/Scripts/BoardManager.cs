@@ -110,11 +110,11 @@ namespace Completed
 
                 GameObject fantasyRoomToInstantiate = Instantiate(fanAndSciRoom._fantasy, scaledCoordinate, Quaternion.identity); //Instantiates fantasy room
                 fantasyRooms[(int)coordinate.x, (int)coordinate.y] = fantasyRoomToInstantiate;  //Adds just instantiated fantasy room to fantasyRooms matrix at appropriate coordinates.
-                spawnEnemies(scaledCoordinate, fantasyEnemies, fanAndSciRoom._fantasy.tag);     //This method instantiates enemies at the most recently instantiated fantasy room.
+                spawnEnemies(scaledCoordinate, fantasyEnemies, fanAndSciRoom._fantasy.transform.name);     //This method instantiates enemies at the most recently instantiated fantasy room.
 
                 GameObject scienceRoomToInstantiate = Instantiate(fanAndSciRoom._science, offsetCoordinate, Quaternion.identity);   //Instantiates science room
                 scienceRooms[(int)coordinate.x, (int)coordinate.y] = scienceRoomToInstantiate;  //Adds just instantiated science room to scienceRooms matrix at appropriate coordinates.
-                spawnEnemies(offsetCoordinate, fantasyEnemies, fanAndSciRoom._science.tag);     //This method instantiates enemies at the most recently instantiated science room.
+                spawnEnemies(offsetCoordinate, fantasyEnemies, fanAndSciRoom._science.transform.name);     //This method instantiates enemies at the most recently instantiated science room.
 
                 //Opens the doors between the newly instnatiated room and its neighbor so that the player character can move between rooms.
                 openDoors((int)coordinate.z, (int)coordinate.x, (int)coordinate.y, fantasyRoomToInstantiate, scienceRoomToInstantiate);
@@ -167,12 +167,12 @@ namespace Completed
                         //Instantiates fantasy exit room, adds the room to our model, and spawns enemies in the exit room.
                         GameObject fantasyRoomToInstantiate = Instantiate(fantasyEndRooms[0], scaledEndPos, Quaternion.identity);
                         fantasyRooms[(int)endPos.x, (int)endPos.y] = roomToInstantiate;
-                        spawnEnemies(scaledEndPos, fantasyEnemies, fantasyEndRooms[0].tag);
+                        spawnEnemies(scaledEndPos, fantasyEnemies, fantasyEndRooms[0].transform.name);
 
                         //Instantiates science exit room, adds the room to our model, and spawns enemies in the exit room.
                         GameObject scienceRoomToInstantiate = Instantiate(scienceEndRooms[0], offsetEndPos, Quaternion.identity);
                         scienceRooms[(int)endPos.x, (int)endPos.y] = roomToInstantiate;
-                        spawnEnemies(offsetEndPos, fantasyEnemies, scienceEndRooms[0].tag);
+                        spawnEnemies(offsetEndPos, fantasyEnemies, scienceEndRooms[0].transform.name);
 
                         lockAndKeyFarAway = true;
 
@@ -377,11 +377,11 @@ namespace Completed
 
             GameObject fantasyRoomToInstantiate = Instantiate(fantasyKeyAndLockRooms[0], scaledCoordinate, Quaternion.identity);
             fantasyRooms[(int)coordinate.x, (int)coordinate.y] = fantasyRoomToInstantiate;
-            spawnEnemies(scaledCoordinate, fantasyEnemies, fantasyKeyAndLockRooms[0].tag);
+            spawnEnemies(scaledCoordinate, fantasyEnemies, fantasyKeyAndLockRooms[0].transform.name);
 
             GameObject scienceRoomToInstantiate = Instantiate(scienceKeyAndLockRooms[0], offsetCoordinate, Quaternion.identity);
             scienceRooms[(int)coordinate.x, (int)coordinate.y] = scienceRoomToInstantiate;
-            spawnEnemies(offsetCoordinate, fantasyEnemies, scienceKeyAndLockRooms[0].tag);
+            spawnEnemies(offsetCoordinate, fantasyEnemies, scienceKeyAndLockRooms[0].transform.name);
 
             openDoors((int)coordinate.z, (int)coordinate.x, (int)coordinate.y, fantasyRoomToInstantiate, scienceRoomToInstantiate);
 
@@ -401,11 +401,11 @@ namespace Completed
 
             GameObject fantasyRoomToInstantiate = Instantiate(fantasyKeyAndLockRooms[1], scaledCoordinate, Quaternion.identity);
             fantasyRooms[(int)coordinate.x, (int)coordinate.y] = fantasyRoomToInstantiate;
-            spawnEnemies(scaledCoordinate, fantasyEnemies, fantasyKeyAndLockRooms[1].tag);
+            spawnEnemies(scaledCoordinate, fantasyEnemies, fantasyKeyAndLockRooms[1].transform.name);
 
             GameObject scienceRoomToInstantiate = Instantiate(scienceKeyAndLockRooms[1], offsetCoordinate, Quaternion.identity);
             scienceRooms[(int)coordinate.x, (int)coordinate.y] = scienceRoomToInstantiate;
-            spawnEnemies(offsetCoordinate, fantasyEnemies, scienceKeyAndLockRooms[1].tag);
+            spawnEnemies(offsetCoordinate, fantasyEnemies, scienceKeyAndLockRooms[1].transform.name);
 
             openDoors((int)coordinate.z, (int)coordinate.x, (int)coordinate.y, fantasyRoomToInstantiate, scienceRoomToInstantiate);
 
@@ -420,50 +420,39 @@ namespace Completed
         void spawnEnemies(Vector2 pos, GameObject[] enemyTypes, String roomID)
         {
             //Switch statment based on room ID, this is because different rooms have different enemy placements.
-            switch (roomID)
+
+            //Important note: each one of our rooms is 16 blocks long and 11 blocks high.
+            //Each one of these "blocks" is a square measuring 16 Unity units by 16 Unity units.
+            //Therefore, enemies are being instantiated at coordinates that are some multiple of 16, to keep placement consistent with our room dimensions.
+
+            if (roomID.Equals("cave1") || roomID.Equals("lab1"))
             {
-                //Important note: each one of our rooms is 16 blocks long and 11 blocks high.
-                //Each one of these "blocks" is a square measuring 16 Unity units by 16 Unity units.
-                //Therefore, enemies are being instantiated at coordinates that are some multiple of 16, to keep placement consistent with our room dimensions.
-                case "0": break;
-
-                case "1":
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (5 * 16), pos.y - (3 * 16)), Quaternion.identity);
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (9 * 16), pos.y - (3 * 16)), Quaternion.identity);
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (13 * 16), pos.y - (3 * 16)), Quaternion.identity);
-                    break;
-
-                case "2":
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (7 * 16), pos.y - (3 * 16)), Quaternion.identity);
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (10 * 16), pos.y - (3 * 16)), Quaternion.identity);
-                    break;
-
-                case "3":
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (6 * 16)), Quaternion.identity);
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
-                    break;
-
-                case "4":
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
-                    break;
-
-                case "5": break;
-
-                case "6": break;
-
-                case "7": break;
-
-                case "8":
-                    Instantiate(enemyTypes[1], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
-                    break;
-
-                case "9":
-                    Instantiate(enemyTypes[1], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
-                    break;
-
-                default: break;
-
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (5 * 16), pos.y - (3 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (9 * 16), pos.y - (3 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (13 * 16), pos.y - (3 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("cave2") || roomID.Equals("lab2"))
+            {
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (7 * 16), pos.y - (3 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (10 * 16), pos.y - (3 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("cave3") || roomID.Equals("lab3"))
+            {
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (6 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("cave4") || roomID.Equals("lab4"))
+            {
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("cave8") || roomID.Equals("lab8"))
+            {
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("cave9") || roomID.Equals("lab9"))
+            {
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
             }
 
         }
