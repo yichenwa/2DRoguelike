@@ -14,6 +14,7 @@ public class shooting : MonoBehaviour {
 	//private bool shotFired = false;
 	private PlayerScript2 player;
 	private SpriteRenderer bulletOrientation;
+    
 
 	void Start () 
 	{
@@ -28,7 +29,7 @@ public class shooting : MonoBehaviour {
 	void Update () 
 	{
 		if (Input.GetKeyDown(KeyCode.Y) && player.ammo > 0)
-		{   
+		{
 			//animator.SetTrigger ("attack"); //We will need left, right, up, down attacking animations
 			if (player.getDirectionString () == "l") {
 				leftPositionFix.Set (transform.position.x - leftOffset, transform.position.y, -1f); //Used to fix shooting left issues
@@ -46,6 +47,7 @@ public class shooting : MonoBehaviour {
 			//shotFired = true;
 
 		}
+       
 	}
 
 }

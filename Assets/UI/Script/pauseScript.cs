@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class pauseScript : MonoBehaviour {
 
     public GameObject pauseMenuCanvas;
+    public GameObject inventoryCanvas;
 
 
     public bool isPaused;
+    public bool isInventory;
 
 	// Use this for initialization
 	void Start () {
@@ -19,26 +21,42 @@ public class pauseScript : MonoBehaviour {
 	void Update () {
         if (isPaused)
         {
-            //if (Time.timeScale == 1) //means if not paused
-            //{
             Time.timeScale = 0;
             pauseMenuCanvas.SetActive(true);
+            if(isInventory)
+            {
+                inventoryCanvas.SetActive(true);
+            }
+            else
+            {
+                inventoryCanvas.SetActive(false);
+            }
+
         }
         //}
         else
         {
             Time.timeScale = 1; //resume the game
             pauseMenuCanvas.SetActive(false);
+            inventoryCanvas.SetActive(false);
         }
             //time.timescale is speed of the game
-            if(Input.GetKeyDown(KeyCode.P))
+            if(Input.GetKeyDown(KeyCode.P)|| (Input.GetKeyDown(KeyCode.Escape)))
             {
                 isPaused = !isPaused;
+                if(isPaused == false && isInventory == true)
+            {
+                isInventory = false;
+            }
             }
         }
     public void resumeGame()
     {
         isPaused = false;
+    }
+    public void Inventory()
+    {
+        isInventory = true;
     }
     public void restartGame()
     {
