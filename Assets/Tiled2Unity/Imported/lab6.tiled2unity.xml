@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 11/2/2017 7:48:12 PM-->
+<!--Last exported: 10/22/2017 9:50:12 PM-->
 <Tiled2Unity version="1.0.12.4">
   <AssignMaterial mesh="lab6_mesh_0001" material="lab sperit" />
   <AssignMaterial mesh="lab6_mesh_0002" material="lab sperit" />
@@ -97,7 +97,7 @@
       <GameObject name="lab sperit" mesh="lab6_mesh_0011" sortingLayerName="" sortingOrder="12" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
-          <Path>32,-96 48,-96 48,-64 32,-64 32,-48 16,-48 16,-64 0,-64 0,-96 16,-96 16,-112 32,-112</Path>
+          <Path>16,-64 0,-64 0,-96 16,-96</Path>
         </PolygonCollider2D>
       </GameObject>
     </GameObject>
@@ -106,7 +106,7 @@
       <GameObject name="lab sperit" mesh="lab6_mesh_0012" sortingLayerName="" sortingOrder="13" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
-          <Path>240,-96 256,-96 256,-64 240,-64 240,-16 192,-16 192,-32 208,-32 208,-48 224,-48 224,-80 208,-80 208,-128 224,-128 224,-144 240,-144</Path>
+          <Path>256,-64 240,-64 240,-96 256,-96</Path>
         </PolygonCollider2D>
       </GameObject>
     </GameObject>
@@ -115,7 +115,7 @@
       <GameObject name="lab sperit" mesh="lab6_mesh_0013" sortingLayerName="" sortingOrder="14" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
-          <Path>128,-112 112,-112 112,-128 48,-128 48,-144 32,-144 32,-160 112,-160 112,-176 144,-176 144,-160 240,-160 240,-144 224,-144 224,-128 208,-128 208,-96 128,-96</Path>
+          <Path>144,-160 112,-160 112,-176 144,-176</Path>
         </PolygonCollider2D>
       </GameObject>
     </GameObject>
@@ -124,7 +124,7 @@
       <GameObject name="lab sperit" mesh="lab6_mesh_0014" sortingLayerName="" sortingOrder="15" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
-          <Path>144,0 112,0 112,-16 64,-16 64,-32 80,-32 80,-48 112,-48 112,-64 224,-64 224,-48 208,-48 208,-32 192,-32 192,-16 144,-16</Path>
+          <Path>144,0 112,0 112,-16 144,-16</Path>
         </PolygonCollider2D>
       </GameObject>
     </GameObject>
