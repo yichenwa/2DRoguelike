@@ -25,6 +25,15 @@ public class PlayerScript2 : MonoBehaviour
     private Vector2 currentPosition; //Used to adjust position with world switching
     private bool inFantasyWorld = true; //Determines which world the player is in 
 	private bool canTeleport = true; //Used to limit teleporting between worlds
+    public float strength;
+    public bool playerdead;
+
+    public int coins; 
+
+    private void OnDisable()
+    {
+        GameManager.instance.playerCoins = coins;
+    }
 
     // Used for initialization
     void Start()
@@ -36,6 +45,8 @@ public class PlayerScript2 : MonoBehaviour
         canTakeDamage = true; 
         directionString = "d";
         currentPosition.Set(transform.position.x, transform.position.y);
+
+        coins = GameManager.instance.playerCoins; 
     }
 
     // This is how the player's movement and status will update 
@@ -99,12 +110,13 @@ public class PlayerScript2 : MonoBehaviour
         //Kills the player if his health drops below 0
         if (playerHP == 0) {
             animator.SetTrigger("die");
+            playerdead = true;
         }
 
         if (playerHP <0)
         {
             this.gameObject.SetActive(false);
-            SceneManager.LoadScene("MenuScreen");
+            //SceneManager.LoadScene("MenuScreen");
         }
         currentPosition.Set(transform.position.x, transform.position.y);
     }
