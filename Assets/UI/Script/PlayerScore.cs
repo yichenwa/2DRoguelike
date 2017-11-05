@@ -14,7 +14,7 @@ public class PlayerScore : MonoBehaviour {
     public Text lvlMult;
     public Text total;
     public Text current;
-    public int timeleft;
+    public float timeleft;
     public int enemies;
     public double totalsc;
 
@@ -38,7 +38,7 @@ public class PlayerScore : MonoBehaviour {
         if (player.playerdead)
         {
                 deadScore();
-                print("player is dead");
+                //print("player is dead");
                 playerScoreCanvas.SetActive(true);
         }
         else //round won statement placed here
@@ -70,7 +70,7 @@ public class PlayerScore : MonoBehaviour {
         timeleft = playerbar.timeleft;
         timeMult.text = "" + timeleft;
         totalsc = (enemies * 20) + (timeleft * .10);
-        total.text = "You Died +" + totalsc;
+        total.text = "GameOver +" + totalsc;
     }
 
    

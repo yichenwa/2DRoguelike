@@ -362,7 +362,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "How To Play!!!\nR: parry\nT: melee, +1 Ammo on hit.\nY: ranged attack\nF:
-    Dimension Jump, (short delay before reuse).\r\nW,A,S,D: move up,left,down,right\nP:
+    Dimension Jump, (short delay before reuse).\r\nW,A,S,D: move up,left,down,right\nP/ESC:
     bring up the pause menu.\nI: Player Inventory(*while in pause menu*)"
 --- !u!222 &1229260399
 CanvasRenderer:
