@@ -101,8 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletSpeed: 60
   strength: 50
-  ranged: 0
-  inventory: {fileID: 0}
 --- !u!212 &212122555198246274
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -143,3 +141,5 @@ SpriteRenderer:
   m_Size: {x: 0.21, y: 0.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
