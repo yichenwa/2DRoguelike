@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Combat/Scenes/PlayerMove.unity
+  isLoaded: 1
+  isActive: 1

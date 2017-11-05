@@ -1,0 +1,31 @@
+﻿# Tiled2Unity generated file. Do not modify by hand.
+# Wavefront file for 'southClosedDoor_mesh_0001.obj'
+
+# Vertices (Count = 8)
+v -112 -176 0
+v -128 -176 0
+v -128 -160 0
+v -112 -160 0
+v -128 -176 0
+v -144 -176 0
+v -144 -160 0
+v -128 -160 0
+
+# Texture cooridinates (Count = 6)
+vt 0.3125 0.75
+vt 0.375 0.75
+vt 0.375 0.8125
+vt 0.3125 0.8125
+vt 0.4375 0.75
+vt 0.4375 0.8125
+
+# Normal
+vn 0 0 -1
+
+# Mesh description
+g southClosedDoor_mesh_0001
+
+# Faces
+f 1/1/1 2/2/1 3/3/1 4/4/1
+f 5/2/1 6/5/1 7/6/1 8/3/1
+
