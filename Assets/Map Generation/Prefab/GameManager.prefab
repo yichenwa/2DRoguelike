@@ -52,11 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7d7414f4f1ab04dadfa7d91bc0ce72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelstartDelay: 2
   boardScript: {fileID: 0}
-  playerCoins: 0
-  levelImage: {fileID: 1357200657868366, guid: 07ce0213eeca14b4886af86626f25ca1, type: 2}
-  leveltext: {fileID: 0}
 --- !u!114 &114677964244575048
 MonoBehaviour:
   m_ObjectHideFlags: 1

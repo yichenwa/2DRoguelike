@@ -7,7 +7,6 @@ using UnityEngine;
 public class TriggerAttackScript : MonoBehaviour 
 {
 	public float strength = 50; //Strength of the melee attack
-    public bool shooting;
 	private PlayerScript2 player;
 
 	void Start()
@@ -18,7 +17,6 @@ public class TriggerAttackScript : MonoBehaviour
 	//Deals damage to the player, and main functionlity of gaining ammunition
 	void OnTriggerEnter2D(Collider2D thing)
 	{
-        shooting = true;
 		if (thing.gameObject.tag == "Enemy" && thing.isTrigger == false) //&& thing.gameObject.name == "Enemy") 
 		{
 			thing.SendMessageUpwards ("takeDamage", strength);
