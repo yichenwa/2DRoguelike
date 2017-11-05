@@ -17,7 +17,7 @@ public class PlayerScript2 : MonoBehaviour
     public float maxHP = 100; //Used for the health bar to calc currentHealth/maxHealth
     public float parryTime = 2f; //Sets how long a parry will last for
     private string directionString = ""; //Used for melee attack direction
-    public float ammo = 10; //Ammo reserve
+    public float ammo = 2; //Ammo reserve
     private Rigidbody2D playerBody; //Used to find and adjust the body of the player
     private Animator animator; //Used to set animation triggers off depending on movement
     public bool canTakeDamage = true; //Used with parry
