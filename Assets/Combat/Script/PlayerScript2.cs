@@ -24,11 +24,14 @@ public class PlayerScript2 : MonoBehaviour
     public bool canParryAgain = true; //Used with parry, prevents spamming
     private Vector2 currentPosition; //Used to adjust position with world switching
     private bool inFantasyWorld = true; //Determines which world the player is in 
-	private bool canTeleport = true; //Used to limit teleporting between worlds
+    private bool canTeleport = true; //Used to limit teleporting between worlds
     public float strength;
     public bool playerdead;
+    public bool playerWin = false;
+    private Vector2 exitPositionFan = new Vector2();
+    private Vector2 exitPositionSci = new Vector2();
 
-    public int coins; 
+    public int coins;
 
     private void OnDisable()
     {
@@ -42,16 +45,63 @@ public class PlayerScript2 : MonoBehaviour
         playerBody.freezeRotation = true; //IMPORTANT! PLAYER TYPE MUST BE DYNAMIC WITH FREEZE ROTATION SELECTED
         //animator = FindObjectOfType<Animator>();
         animator = GetComponent<Animator>(); //Finds the animator controller
-        canTakeDamage = true; 
+        canTakeDamage = true;
         directionString = "d";
         currentPosition.Set(transform.position.x, transform.position.y);
 
-        coins = GameManager.instance.playerCoins; 
+        coins = GameManager.instance.playerCoins;
+
+        if (LevelData.currentLevel == 1)
+        {
+            exitPositionFan.x = GameObject.Find("cave9(Clone)").transform.position.x + 124;
+            exitPositionFan.y = GameObject.Find("cave9(Clone)").transform.position.y - 71;
+            exitPositionSci.x = GameObject.Find("lab9(Clone)").transform.position.x + 124;
+            exitPositionSci.y = GameObject.Find("lab9(Clone)").transform.position.y - 71;
+        }
+        else if (LevelData.currentLevel == 2)
+        {
+            exitPositionFan.x = GameObject.Find("forest9(Clone)").transform.position.x + 124;
+            exitPositionFan.y = GameObject.Find("forest9(Clone)").transform.position.y - 71;
+            exitPositionSci.x = GameObject.Find("food9(Clone)").transform.position.x + 124;
+            exitPositionSci.y = GameObject.Find("food9(Clone)").transform.position.y - 71;
+        }
     }
 
     // This is how the player's movement and status will update 
     void FixedUpdate()
     {
+        if (transform.position.x >= exitPositionFan.x - 5 && transform.position.x <= exitPositionFan.x + 5)
+        {
+            if (transform.position.y >= exitPositionFan.y - 5 && transform.position.y <= exitPositionFan.y + 5)
+            {
+                if (LevelData.currentLevel == 1)
+                {
+                    LevelData.currentLevel = 2;
+                    Application.LoadLevel(Application.loadedLevel);
+                }
+                else if (LevelData.currentLevel == 2)
+                {
+                    playerWin = true;
+                }
+            }
+        }
+
+        if (transform.position.x >= exitPositionSci.x - 5 && transform.position.x <= exitPositionSci.x + 5)
+        {
+            if (transform.position.y >= exitPositionSci.y - 5 && transform.position.y <= exitPositionSci.y + 5)
+            {
+                if (LevelData.currentLevel == 1)
+                {
+                    LevelData.currentLevel = 2;
+                    Application.LoadLevel(Application.loadedLevel);
+                }
+                else if (LevelData.currentLevel == 2)
+                {
+                    playerWin = true;
+                }
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.R) && canParryAgain == true) //Handles parrying, binds to R key for now
         {
             animator.SetTrigger("parry");
@@ -61,11 +111,11 @@ public class PlayerScript2 : MonoBehaviour
             StartCoroutine(preventUnlimitedParry());
         }
 
-		if (Input.GetKeyDown(KeyCode.F) && canTeleport == true) //Handles teleportation, binds to F key for now
+        if (Input.GetKeyDown(KeyCode.F) && canTeleport == true) //Handles teleportation, binds to F key for now
         {
-			canTeleport = false;
+            canTeleport = false;
 
-            if(inFantasyWorld == true)
+            if (inFantasyWorld == true)
             {
                 transform.position = new Vector3(transform.position.x + 2000, transform.position.y, transform.position.z);
                 inFantasyWorld = false;
@@ -76,7 +126,7 @@ public class PlayerScript2 : MonoBehaviour
                 inFantasyWorld = true;
             }
 
-			StartCoroutine (teleportDelay ());
+            StartCoroutine(teleportDelay());
         }
 
         Vector2 targetVelocity = new Vector2(Input.GetAxisRaw("Horizontal"),
@@ -106,14 +156,15 @@ public class PlayerScript2 : MonoBehaviour
             directionString = "d";
         }
 
-       
+
         //Kills the player if his health drops below 0
-        if (playerHP == 0) {
+        if (playerHP == 0)
+        {
             animator.SetTrigger("die");
             playerdead = true;
         }
 
-        if (playerHP <0)
+        if (playerHP < 0)
         {
             this.gameObject.SetActive(false);
             //SceneManager.LoadScene("MenuScreen");
@@ -132,11 +183,11 @@ public class PlayerScript2 : MonoBehaviour
         canParryAgain = true;                  //prevents spamming of the parry button for invincibility
     }
 
-	IEnumerator teleportDelay() //Limits how often the player can teleport with the f key
-	{
-		yield return new WaitForSeconds (3f);
-		canTeleport = true;
-	}
+    IEnumerator teleportDelay() //Limits how often the player can teleport with the f key
+    {
+        yield return new WaitForSeconds(3f);
+        canTeleport = true;
+    }
 
     public string getDirectionString() //Used for attacking. Determines direction to attack in 
     {

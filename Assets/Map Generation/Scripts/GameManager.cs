@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         boardScript = GetComponent<BoardManager>();
 
-        InitGame();     //Calls InitGame() in boardManager.
+        //InitGame();     //Calls InitGame() in boardManager.
 
     }
 
@@ -37,8 +37,13 @@ public class GameManager : MonoBehaviour
     {
         //Calls the SetupScene method found in the BoardManager script.
         //This is where the entirety of level generation takes place.
-        boardScript.SetupScene();
+        boardScript.SetupScene(LevelData.currentLevel);
+    }
 
+    void OnLevelWasLoaded(int index)
+    {
+        //Call InitGame to initialize our level.
+        InitGame();
     }
 
     // Update is called once per frame

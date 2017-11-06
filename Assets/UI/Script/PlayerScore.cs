@@ -4,7 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class PlayerScore : MonoBehaviour {
+public class PlayerScore : MonoBehaviour
+{
     private PlayerScript2 player;
     private BarScript playerbar;
     private EnemyScript enemy;
@@ -24,22 +25,29 @@ public class PlayerScore : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         player = FindObjectOfType<PlayerScript2>();
         playerbar = FindObjectOfType<BarScript>();
         enemy = FindObjectOfType<EnemyScript>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         enemtot(); //tally up enemies slain, *See Enemy Script*
         //create an if game is finished funct
         //then grab the time
         if (player.playerdead)
         {
-                deadScore();
-                //print("player is dead");
-                playerScoreCanvas.SetActive(true);
+            deadScore();
+            //print("player is dead");
+            playerScoreCanvas.SetActive(true);
+        }
+        else if (player.playerWin)
+        {
+            totScore();
+            playerScoreCanvas.SetActive(true);
         }
         else //round won statement placed here
         {
@@ -61,7 +69,7 @@ public class PlayerScore : MonoBehaviour {
         lvlMult.text = "100";
         timeleft = playerbar.timeleft;
         timeMult.text = "" + timeleft;
-        totalsc = (enemies * 20) + 100 + (timeleft*1.5); // 100 is for completeing lvl 1 make a value that is global
+        totalsc = (enemies * 20) + 100 + (timeleft * 1.5); // 100 is for completeing lvl 1 make a value that is global
         total.text = "Survived +" + totalsc;
     }
     public void deadScore()
@@ -72,8 +80,6 @@ public class PlayerScore : MonoBehaviour {
         totalsc = (enemies * 20) + (timeleft * .10);
         total.text = "GameOver +" + totalsc;
     }
-
-   
 
 
 }
