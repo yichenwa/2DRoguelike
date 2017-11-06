@@ -2,8 +2,12 @@
 
 Collaboration Release
 
-Here you will find the source code for our collaboration release. To run the program from source, please unzip the folder called "2DRoguelike v0.4.0.zip" and open the extracted folder in Unity.
-The file "Stuck-Between.zip" contains the executable file for our program.
+Here you will find the source code for our collaboration release. The file "Stuck-Between.zip" contains the executable file for our program.
+
+To run the program from source, please navigate to this link: https://antihumorous.itch.io/stuck-between
+Download and unzip the file called "2DRoguelike v0.4.0.zip" and open the extracted folder in Unity.
+We would have included the zipped folder containing our source code directly on GitHub, but the file was too large to upload.
+We do not recommend trying to run our source code off of a cloned version of our GitHub repository.
 
 To execute this program on a Windows machine:
 
