@@ -1,8 +1,8 @@
-2D Roguelike v0.3.0 readme
+2D Roguelike v0.4.0 readme
 
-Beta Release
+Collaboration Release
 
-Here you will find the source code for our beta release. Alternatively, the file "2D Roguelike Project v0.3.0.zip" contains our source code in a zipped folder.
+Here you will find the source code for our collaboration release. To run the program from source, please unzip the folder called "2DRoguelike v0.4.0.zip" and open the extracted folder in Unity.
 The file "Stuck-Between.zip" contains the executable file for our program.
 
 To execute this program on a Windows machine:
@@ -19,4 +19,5 @@ t: melee attack, which replenishes 1 ranged attack ammo with a successful hit.
 y: ranged attack, which starts with 2 ammo, and can increase to a maximum of 7. Fires laterally.
 f: swaps dimensions, between a science fiction lab and a fantasy cave setting. The rooms have slightly different layouts but the overall map is the same (short delay before reuse).
 w,a,s,d: move up,left,down,right respectively
-p: bring up the pause menu.
+ESC or p: bring up the pause menu.
+When viewing the inventory from the pause menu, use the mouse to left click on the "Equip?" buttons to change what item is currently equipped.
