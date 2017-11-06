@@ -489,6 +489,10 @@ namespace Completed
             //Each one of these "blocks" is a square measuring 16 Unity units by 16 Unity units.
             //Therefore, enemies are being instantiated at coordinates that are some multiple of 16, to keep placement consistent with our room dimensions.
 
+            //basic enemy - 0
+            //trap enemy - 1
+            //ranged enemy - 2
+            //boss enemy - 3
             if (roomID.Equals("cave1") || roomID.Equals("lab1"))
             {
                 Instantiate(enemyTypes[0], new Vector2(pos.x + (5 * 16), pos.y - (3 * 16)), Quaternion.identity);
@@ -497,13 +501,13 @@ namespace Completed
             }
             else if (roomID.Equals("cave2") || roomID.Equals("lab2"))
             {
-                Instantiate(enemyTypes[0], new Vector2(pos.x + (7 * 16), pos.y - (3 * 16)), Quaternion.identity);
-                Instantiate(enemyTypes[0], new Vector2(pos.x + (10 * 16), pos.y - (3 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (5 * 16), pos.y - (3 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (11 * 16), pos.y - (3 * 16)), Quaternion.identity);
             }
             else if (roomID.Equals("cave3") || roomID.Equals("lab3"))
             {
-                Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (6 * 16)), Quaternion.identity);
-                Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (5 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (8 * 16)), Quaternion.identity);
             }
             else if (roomID.Equals("cave4") || roomID.Equals("lab4"))
             {
@@ -512,15 +516,50 @@ namespace Completed
             }
             else if (roomID.Equals("cave8") || roomID.Equals("lab8"))
             {
-                Instantiate(enemyTypes[1], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[3], new Vector2(pos.x + (8 * 16), pos.y - (8 * 16)), Quaternion.identity);
             }
             else if (roomID.Equals("cave9") || roomID.Equals("lab9"))
             {
-                Instantiate(enemyTypes[1], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[3], new Vector2(pos.x + (8 * 16), pos.y - (8 * 16)), Quaternion.identity);
             }
-
+            else if (roomID.Equals("food1") || roomID.Equals("forest1"))
+            {
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (6 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (9 * 16), pos.y - (6 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("food2") || roomID.Equals("forest2"))
+            {
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (6 * 16), pos.y - (5 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (11 * 16), pos.y - (5 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("food3") || roomID.Equals("forest3"))
+            {
+                Instantiate(enemyTypes[2], new Vector2(pos.x + (2 * 16), pos.y - (2 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (5 * 16), pos.y - (6 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("food4") || roomID.Equals("forest4"))
+            {
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (2 * 16), pos.y - (2 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (2 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (15 * 16), pos.y - (2 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (15 * 16), pos.y - (10 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("food6") || roomID.Equals("forest6"))
+            {
+                Instantiate(enemyTypes[2], new Vector2(pos.x + (5 * 16), pos.y - (6 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (12 * 16), pos.y - (2 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (12 * 16), pos.y - (9 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("food8") || roomID.Equals("forest8"))
+            {
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (2 * 16), pos.y - (2 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (2 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (15 * 16), pos.y - (2 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (15 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[3], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[3], new Vector2(pos.x + (9 * 16), pos.y - (10 * 16)), Quaternion.identity);
+            }
         }
-
 
 
     }
