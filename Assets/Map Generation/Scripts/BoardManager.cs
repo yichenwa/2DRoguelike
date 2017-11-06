@@ -40,6 +40,32 @@ namespace Completed
 
         public GameObject[] fantasyEnemies;                                    //Array of enemy prefabs
 
+
+
+        public GameObject[] fantasyStartRooms1;                                 //Array of fantasy starting room prefabs
+        public GameObject[] fantasyNormalRooms1;                                //Array of normal fantasy room prefabs
+        public GameObject[] fantasyEndRooms1;                                   //Array of fantasy end room prefabs
+        public GameObject[] fantasyKeyAndLockRooms1;                            //Array of fantasy key rooms immediately followed by their corresponding lock rooms
+
+        public GameObject[] scienceStartRooms1;                                 //Array of science starting room prefabs
+        public GameObject[] scienceNormalRooms1;                                //Array of normal science room prefabs
+        public GameObject[] scienceEndRooms1;                                   //Array of science end room prefabs
+        public GameObject[] scienceKeyAndLockRooms1;                            //Array of science key rooms immediately followed by their corresponding lock rooms
+
+
+
+        public GameObject[] fantasyStartRooms2;                                 //Array of fantasy starting room prefabs
+        public GameObject[] fantasyNormalRooms2;                                //Array of normal fantasy room prefabs
+        public GameObject[] fantasyEndRooms2;                                   //Array of fantasy end room prefabs
+        public GameObject[] fantasyKeyAndLockRooms2;                            //Array of fantasy key rooms immediately followed by their corresponding lock rooms
+
+        public GameObject[] scienceStartRooms2;                                 //Array of science starting room prefabs
+        public GameObject[] scienceNormalRooms2;                                //Array of normal science room prefabs
+        public GameObject[] scienceEndRooms2;                                   //Array of science end room prefabs
+        public GameObject[] scienceKeyAndLockRooms2;                            //Array of science key rooms immediately followed by their corresponding lock rooms
+
+
+
         private GameObject[,] fantasyRooms = new GameObject[7, 7];      //A matrix that holds the fantasy rooms that have been instantiated
         private GameObject[,] scienceRooms = new GameObject[7, 7];      //A matrix that holds the science rooms that have been instantiated
         private List<Vector2> roomCoordinates = new List<Vector2>();    //A list of xy coordinates that have rooms placed in them
@@ -48,35 +74,72 @@ namespace Completed
         //SetupScene gets called from the GameManager script. 
         //SetupScene first calls a method to perform initial data structure initialization.
         //Next it then calls another method to generate a complete random level layout.
-        public void SetupScene()
+        public void SetupScene(int levelNumber)
         {
             //Resets and initializes the data structures used for level generation.
-            InitialiseDataStructures();
+            InitialiseDataStructures(levelNumber);
 
             //Generates a random level.
-            GenerateMap();
+            //if (levelNumber == 1)
+            //{
+            GenerateMap(levelNumber);
+            //}
         }
 
 
         //Clears data structures in preparation for generating level
-        void InitialiseDataStructures()
+        void InitialiseDataStructures(int levelNumber)
         {
             for (int x = 0; x < 7; x++)
             {
                 for (int y = 0; y < 7; y++) //This loop makes sure every position in fantasyRooms and scienceRooms are empty.
                 {
+                    //if (fantasyRooms[x, y] != null)
+                    //{
+                    Destroy(fantasyRooms[x, y]);
+                    Destroy(scienceRooms[x, y]);
                     fantasyRooms[x, y] = null;
                     scienceRooms[x, y] = null;
+                    //}
                 }
             }
+            Destroy(GameObject.Find("cave9(Clone)"));
+            Destroy(GameObject.Find("lab9(Clone)"));
+
             roomCoordinates = new List<Vector2>();
             roomCoordinatesSize = 0;
+
+            if (levelNumber == 1)
+            {
+                fantasyStartRooms = fantasyStartRooms1;
+                fantasyNormalRooms = fantasyNormalRooms1;
+                fantasyEndRooms = fantasyEndRooms1;
+                fantasyKeyAndLockRooms = fantasyKeyAndLockRooms1;
+
+                scienceStartRooms = scienceStartRooms1;
+                scienceNormalRooms = scienceNormalRooms1;
+                scienceEndRooms = scienceEndRooms1;
+                scienceKeyAndLockRooms = scienceKeyAndLockRooms1;
+            }
+            else if (levelNumber == 2)
+            {
+                fantasyStartRooms = fantasyStartRooms2;
+                fantasyNormalRooms = fantasyNormalRooms2;
+                fantasyEndRooms = fantasyEndRooms2;
+                fantasyKeyAndLockRooms = fantasyKeyAndLockRooms2;
+
+                scienceStartRooms = scienceStartRooms2;
+                scienceNormalRooms = scienceNormalRooms2;
+                scienceEndRooms = scienceEndRooms2;
+                scienceKeyAndLockRooms = scienceKeyAndLockRooms2;
+            }
+
         }
 
 
 
         //This method places starting room, places a certain number of regular rooms in a loop, then places an exit room.
-        void GenerateMap()
+        void GenerateMap(int levelNumber)
         {
             //Levels are randomly generated with rooms being placed into a 7 by 7 grid.
             //The starting room is always placed in the middle of the grid at position (3,3).
@@ -99,6 +162,7 @@ namespace Completed
             //Coordinates contained in this list are occupied.
             roomCoordinates.Add(startPos);
             roomCoordinatesSize += 1;
+
 
             for (int i = 0; i < 8; i++) //This loop places 8 "normal" rooms that are not starting rooms, exit rooms, key rooms, or lock rooms.
             {
@@ -193,8 +257,8 @@ namespace Completed
         {
             if (relativeDirection == 1)     //Placing a room to the north of a previously existing room
             {
-                GameObject fantasyToDestroy = fantasyRooms[x, y-1];
-                GameObject scienceToDestroy = scienceRooms[x, y-1];
+                GameObject fantasyToDestroy = fantasyRooms[x, y - 1];
+                GameObject scienceToDestroy = scienceRooms[x, y - 1];
 
                 //Destroy the north closed door and wall of the previously existing room
                 fantasyToDestroy.transform.Find("northDoorClosed").gameObject.SetActive(false);
@@ -211,8 +275,8 @@ namespace Completed
             }
             else if (relativeDirection == 2)    //Placing a room to the south of a previously existing room
             {
-                GameObject fantasyToDestroy = fantasyRooms[x, y+1];
-                GameObject scienceToDestroy = scienceRooms[x, y+1];
+                GameObject fantasyToDestroy = fantasyRooms[x, y + 1];
+                GameObject scienceToDestroy = scienceRooms[x, y + 1];
 
                 //Destroy the south closed door and wall of the previously existing room
                 fantasyToDestroy.transform.Find("southDoorClosed").gameObject.SetActive(false);
@@ -228,8 +292,8 @@ namespace Completed
             }
             else if (relativeDirection == 3)    //Placing a room to the east of a previously existing room
             {
-                GameObject fantasyToDestroy = fantasyRooms[x-1, y];
-                GameObject scienceToDestroy = scienceRooms[x-1, y];
+                GameObject fantasyToDestroy = fantasyRooms[x - 1, y];
+                GameObject scienceToDestroy = scienceRooms[x - 1, y];
 
                 //Destroy the east closed door and wall of the previously existing room
                 fantasyToDestroy.transform.Find("eastDoorClosed").gameObject.SetActive(false);
@@ -245,8 +309,8 @@ namespace Completed
             }
             else if (relativeDirection == 4)    //Placing a room to the west of a previously existing room
             {
-                GameObject fantasyToDestroy = fantasyRooms[x+1, y];
-                GameObject scienceToDestroy = scienceRooms[x+1, y];
+                GameObject fantasyToDestroy = fantasyRooms[x + 1, y];
+                GameObject scienceToDestroy = scienceRooms[x + 1, y];
 
                 //Destroy the west closed door and wall of the previously existing room
                 fantasyToDestroy.transform.Find("westDoorClosed").gameObject.SetActive(false);
@@ -352,7 +416,7 @@ namespace Completed
         //Helper method returns true when xy coordinate pair is available for instantiating a new room, false otherwise.
         Boolean isCoordinateEmpty(int x, int y)
         {
-            if(x >= 7 || x < 0 || y >= 7 || y< 0)   //xy coordinate is out of bounds of our 7 by 7 grid model.
+            if (x >= 7 || x < 0 || y >= 7 || y < 0)   //xy coordinate is out of bounds of our 7 by 7 grid model.
             {
                 return false;
             }
@@ -367,7 +431,7 @@ namespace Completed
         }
 
 
-        
+
         //Method will place a key room and return the xy coordinates where it was instantiated.
         Vector2 placeKeyRoom()
         {
