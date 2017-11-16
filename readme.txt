@@ -25,3 +25,9 @@ f: swaps dimensions, between a science fiction lab and a fantasy cave setting. T
 w,a,s,d: move up,left,down,right respectively
 ESC or p: bring up the pause menu.
 When viewing the inventory from the pause menu, use the mouse to left click on the "Equip?" buttons to change what item is currently equipped.
+
+Music Information
+Music: "The Great Madeja" by Rolemusic. Music protected under CC BY 4.0
+License: http://tinyurl.com/mjjvns8 
+Music: http://tinyurl.com/y937nn6w
+Disclaimer: This music can only be used under the terms as identified in the above license

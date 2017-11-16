@@ -158,17 +158,17 @@ public class PlayerScript2 : MonoBehaviour
 
 
         //Kills the player if his health drops below 0
-        if (playerHP == 0)
+        if (playerHP <= 0)
         {
             animator.SetTrigger("die");
             playerdead = true;
         }
 
-        if (playerHP < 0)
-        {
-            this.gameObject.SetActive(false);
+        //if (playerHP < 0)
+        //{
+            //this.gameObject.SetActive(false);
             //SceneManager.LoadScene("MenuScreen");
-        }
+        //}
         currentPosition.Set(transform.position.x, transform.position.y);
     }
     IEnumerator parryDelay()
