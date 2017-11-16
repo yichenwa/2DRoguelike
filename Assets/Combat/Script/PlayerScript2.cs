@@ -30,6 +30,7 @@ public class PlayerScript2 : MonoBehaviour
     public bool playerWin = false;
     private Vector2 exitPositionFan = new Vector2();
     private Vector2 exitPositionSci = new Vector2();
+
     public int coins;
 
     private void OnDisable()
@@ -47,7 +48,6 @@ public class PlayerScript2 : MonoBehaviour
         canTakeDamage = true;
         directionString = "d";
         currentPosition.Set(transform.position.x, transform.position.y);
-
 
         coins = GameManager.instance.playerCoins;
 
@@ -164,11 +164,11 @@ public class PlayerScript2 : MonoBehaviour
             playerdead = true;
         }
 
-        /*if (playerHP < 0)
-        {
-            this.gameObject.SetActive(false);
+        //if (playerHP < 0)
+        //{
+            //this.gameObject.SetActive(false);
             //SceneManager.LoadScene("MenuScreen");
-        }*/
+        //}
         currentPosition.Set(transform.position.x, transform.position.y);
     }
     IEnumerator parryDelay()

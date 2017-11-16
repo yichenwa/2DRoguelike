@@ -365,10 +365,6 @@ MonoBehaviour:
   ammo: 2
   canTakeDamage: 1
   canParryAgain: 1
-  strength: 0
-  playerdead: 0
-  playerWin: 0
-  coins: 0
 --- !u!114 &114558442898881344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -381,7 +377,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength: 50
-  shooting: 0
 --- !u!114 &114565978777468358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -406,7 +401,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength: 50
-  shooting: 0
 --- !u!114 &114796660368973554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -419,7 +413,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength: 50
-  shooting: 0
 --- !u!114 &114862202441009350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -432,7 +425,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength: 50
-  shooting: 0
 --- !u!212 &212679473922623358
 SpriteRenderer:
   m_ObjectHideFlags: 1
