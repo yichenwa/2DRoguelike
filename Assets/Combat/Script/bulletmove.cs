@@ -12,17 +12,12 @@ public class bulletmove : MonoBehaviour
     //private bool bulletMoving;
     private Vector2 direction;
     //private BoxCollider2D bulletBox;
-    public float strength ; //Bullets and slashing are equal to start
-    public bool ranged = false;
-    public Inventory inventory;
+    public float strength = 50; //Bullets and slashing are equal to start
 
     void Start()
     {
-        ranged = false;
         //bulletBox = FindObjectOfType<BoxCollider2D> ();
         player = FindObjectOfType<PlayerScript2>(); //Finds the players location
-        inventory = FindObjectOfType<Inventory>();
-        //strength = inventory.rstrength;
 
         //bulletMoving = false;
 
@@ -54,9 +49,7 @@ public class bulletmove : MonoBehaviour
     void Update()
     {
 
-
         transform.Translate(direction * BulletSpeed * Time.deltaTime);
-        
 
     }
 
@@ -83,13 +76,8 @@ public class bulletmove : MonoBehaviour
     {
         if (thing.gameObject.tag == "Enemy") //Will need changing if there are more boxcolliders introduced
         {
-            ranged = true;
-            thing.gameObject.SendMessageUpwards("takeDamage", 100);
+            thing.gameObject.SendMessageUpwards("takeDamage", strength);
             Destroy(gameObject);
-        }
-        else
-        {
-            ranged = false;
         }
         if (thing.gameObject.name != "Player")
         {

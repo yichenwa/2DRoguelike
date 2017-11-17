@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class pauseScript : MonoBehaviour {
+public class pauseScript : MonoBehaviour
+{
 
     public GameObject pauseMenuCanvas;
     public GameObject inventoryCanvas;
@@ -12,18 +13,20 @@ public class pauseScript : MonoBehaviour {
     public bool isPaused;
     public bool isInventory;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (isPaused)
         {
             Time.timeScale = 0;
             pauseMenuCanvas.SetActive(true);
-            if(isInventory)
+            if (isInventory)
             {
                 inventoryCanvas.SetActive(true);
             }
@@ -40,16 +43,16 @@ public class pauseScript : MonoBehaviour {
             pauseMenuCanvas.SetActive(false);
             inventoryCanvas.SetActive(false);
         }
-            //time.timescale is speed of the game
-            if(Input.GetKeyDown(KeyCode.P)|| (Input.GetKeyDown(KeyCode.Escape)))
-            {
-                isPaused = !isPaused;
-                if(isPaused == false && isInventory == true)
+        //time.timescale is speed of the game
+        if (Input.GetKeyDown(KeyCode.P) || (Input.GetKeyDown(KeyCode.Escape)))
+        {
+            isPaused = !isPaused;
+            if (isPaused == false && isInventory == true)
             {
                 isInventory = false;
             }
-            }
         }
+    }
     public void resumeGame()
     {
         isPaused = false;
@@ -60,11 +63,13 @@ public class pauseScript : MonoBehaviour {
     }
     public void restartGame()
     {
+        LevelData.currentLevel = 1;
         Application.LoadLevel(Application.loadedLevel);
 
     }
     public void ReturnToMain(string sceneName)
     {
+        LevelData.currentLevel = 1;
         SceneManager.LoadScene(sceneName);
     }
 }

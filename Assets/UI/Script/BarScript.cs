@@ -14,11 +14,12 @@ public class BarScript : MonoBehaviour {
     [SerializeField]
     private Image parry;
     [SerializeField]
-    public int timeleft = 301;
+    public float timeleft = 301.5f;
     [SerializeField]
     public Text timeCountDown;
     private int leveldelay;
     public GameObject levelLoadCanvas;
+    public GameObject barCanvas;
 
 
     public float MaxValue { get; set; }
@@ -37,14 +38,17 @@ public class BarScript : MonoBehaviour {
         player = FindObjectOfType<PlayerScript2>();
         StartCoroutine("LoseTime");
         levelLoadCanvas.SetActive(true);
+        barCanvas.SetActive(false);
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
         //level screen delay
-        if(timeleft == 300)
+        if(timeleft == 299.5)
         {
+            timeleft = 300;
+            barCanvas.SetActive(true);
             levelLoadCanvas.SetActive(false);
         }
 
@@ -53,6 +57,7 @@ public class BarScript : MonoBehaviour {
         {
             StopCoroutine("LoseTime");
             timeCountDown.text = "Times Up!"; //time up then end game
+            player.playerdead = true;
         }
         if (player.playerHP <= 0){
             health.fillAmount = 0;
