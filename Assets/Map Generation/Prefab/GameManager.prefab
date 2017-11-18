@@ -102,26 +102,24 @@ MonoBehaviour:
   - {fileID: 170028, guid: 141fcd877114046b78434ec81002bfb6, type: 2}
   - {fileID: 199994, guid: 6f8b0731f1f964a18a290c83f88147e5, type: 2}
   fantasyStartRooms2:
-  - {fileID: 1327118117232316, guid: 3206ec7b3f78c594d9cebe8fe8ee8f1e, type: 2}
+  - {fileID: 1631647765755898, guid: a4981aeaa857b61449ee4c3f33498d1b, type: 2}
   fantasyNormalRooms2:
-  - {fileID: 1000225686557098, guid: 4c33c4d5870bd2448bcdaea512b7599e, type: 2}
-  - {fileID: 1662457808557946, guid: 3b90bd9377a1f194c9ae11515dea18d9, type: 2}
-  - {fileID: 1108747854462112, guid: 884dbd9486c6c9c49a68ca016b9ae1b2, type: 2}
-  - {fileID: 1320352818128844, guid: 741fb63c9f504fe4096350fa17df4e3d, type: 2}
+  - {fileID: 1064332520355496, guid: b9a08894c6f5c834b8d02f39f4f5af92, type: 2}
+  - {fileID: 1486611774880644, guid: 65c9a6f742250aa49a8bd9ffab382cad, type: 2}
+  - {fileID: 1197460779322214, guid: 73c28dd851eea964f944421af5c9c01e, type: 2}
   fantasyEndRooms2:
-  - {fileID: 1648546370469216, guid: 3ffde55dd77d7ad41a2266939e2c6080, type: 2}
+  - {fileID: 1674692465190358, guid: cdeb76f066e66b54bb246a8b3f93fb8a, type: 2}
   fantasyKeyAndLockRooms2:
-  - {fileID: 1074372140101228, guid: 155fd523cd8bb6d48a302c242507ebba, type: 2}
-  - {fileID: 1894421381946158, guid: cab5ad764af907a47acf41207de82630, type: 2}
+  - {fileID: 1826175907888112, guid: 9ea419b645f53ca4fae510452243bf73, type: 2}
+  - {fileID: 1122518434073360, guid: cd03b1ddee8d0d04fa0692f2e2d4a12b, type: 2}
   scienceStartRooms2:
-  - {fileID: 1599236987723940, guid: e3dcaa81a30eebd4282936a25cda496a, type: 2}
+  - {fileID: 1222664457620156, guid: 579c64497110de8428ace185b712184b, type: 2}
   scienceNormalRooms2:
-  - {fileID: 1967440162371922, guid: 9b9c8ba4550bf2443a5b802dd4eeeca4, type: 2}
-  - {fileID: 1949085445695584, guid: 380e20dd81f95fa41b89e6fb64cd3c44, type: 2}
-  - {fileID: 1134142248243006, guid: b018a96c56d085744b486cf80530501e, type: 2}
-  - {fileID: 1721971573935588, guid: 39cf04ddd2a38d746ad6d381c0a1ce4e, type: 2}
+  - {fileID: 1217569583630304, guid: b7ada19905ea4fe419618dee2d44ead0, type: 2}
+  - {fileID: 1847196809842884, guid: 8a209b497dae2634e9ed2ebb05ef1624, type: 2}
+  - {fileID: 1141460713780558, guid: a42b536d8a928914d95cf14142247ab8, type: 2}
   scienceEndRooms2:
-  - {fileID: 1264018287841098, guid: 66d6f92455f4cd6498e0691b290b4292, type: 2}
+  - {fileID: 1351183711876230, guid: 9bc596d9fe138f54f82909d91ce95db6, type: 2}
   scienceKeyAndLockRooms2:
-  - {fileID: 1883297699732854, guid: 67daadcf0afce894e8e8adb485b47c8c, type: 2}
-  - {fileID: 1870578767633524, guid: 350b4ac9d4903b2428823c3b47904b9f, type: 2}
+  - {fileID: 1924233780154990, guid: 5680d2d2169338a40a187d0e49d9f2ad, type: 2}
+  - {fileID: 1292985648317356, guid: 2baaa89ec0f7a1449a90ed8f236a0771, type: 2}
