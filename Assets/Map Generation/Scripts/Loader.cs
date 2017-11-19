@@ -11,6 +11,9 @@ public class Loader : MonoBehaviour
     //The Awake() method instantiates an instance of the gameManager script.
     void Awake()
     {
-        Instantiate(gameManager);
+        if (GameManager.instance == null)
+        {
+            Instantiate(gameManager);
+        }
     }
 }

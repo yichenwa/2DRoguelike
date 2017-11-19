@@ -13,6 +13,7 @@ public class EnemyScript : MonoBehaviour
 
     public float enemySpeed = .75f; //Used to set the enemies walking speed
     public float enemyHP = 150;
+	public float strength = 50;
     private Vector2 playerPosition; //Will be used to locate the player's location
     private PlayerScript2 player; //Finds the player object by finding the PlayerScript2 object
     private Rigidbody2D enemyBody; //Used to control the enemy body 
@@ -22,6 +23,9 @@ public class EnemyScript : MonoBehaviour
 	private CircleCollider2D enemyRange;
     private Animator animator;
 	private Vector3 savedPosition;
+    public int enemycount;
+    public PlayerScore score;
+    public Inventory trigger;
 
     // Used for initialization
     void Start()
@@ -31,7 +35,9 @@ public class EnemyScript : MonoBehaviour
         animator = FindObjectOfType<Animator>();
         enemyBody.freezeRotation = true; //IMPORTANT! ENEMY MUST BE KINEMATIC
 		playerInRange = false;
-		//enemyRange.enabled = true;
+        //enemyRange.enabled = true;
+        trigger = FindObjectOfType<Inventory>();
+        score = FindObjectOfType<PlayerScore>();
 
     }
 
@@ -55,6 +61,7 @@ public class EnemyScript : MonoBehaviour
         }
         if (enemyHP <= 0) //Kills the enemy if his health drops to 0 or les
         {
+            score.enemies++;
             this.gameObject.SetActive(false);
         }
 
@@ -64,7 +71,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (thing.gameObject.name == "Player" && player.canTakeDamage == true && canDamage == true)
         { //The new canTakeDamage works // with parrying
-            player.playerHP -= 50; //Damage done, can be adjusted
+            player.playerHP -= strength; //Damage done, can be adjusted
             canDamage = false;
             StartCoroutine(damageDelay());
 			transform.position = savedPosition;
@@ -74,7 +81,9 @@ public class EnemyScript : MonoBehaviour
 
     public void takeDamage(float damage) //Used as a reference in player scripts, to hurt the enemy
     {
-        enemyHP -= damage;
+
+            damage = trigger.strength;
+            enemyHP -= damage;
     }
 
     IEnumerator walkDelay() //Used to get the enemy walking after a collision, with delay of course

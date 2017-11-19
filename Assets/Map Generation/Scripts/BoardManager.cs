@@ -40,6 +40,32 @@ namespace Completed
 
         public GameObject[] fantasyEnemies;                                    //Array of enemy prefabs
 
+
+
+        public GameObject[] fantasyStartRooms1;                                 //Array of fantasy starting room prefabs
+        public GameObject[] fantasyNormalRooms1;                                //Array of normal fantasy room prefabs
+        public GameObject[] fantasyEndRooms1;                                   //Array of fantasy end room prefabs
+        public GameObject[] fantasyKeyAndLockRooms1;                            //Array of fantasy key rooms immediately followed by their corresponding lock rooms
+
+        public GameObject[] scienceStartRooms1;                                 //Array of science starting room prefabs
+        public GameObject[] scienceNormalRooms1;                                //Array of normal science room prefabs
+        public GameObject[] scienceEndRooms1;                                   //Array of science end room prefabs
+        public GameObject[] scienceKeyAndLockRooms1;                            //Array of science key rooms immediately followed by their corresponding lock rooms
+
+
+
+        public GameObject[] fantasyStartRooms2;                                 //Array of fantasy starting room prefabs
+        public GameObject[] fantasyNormalRooms2;                                //Array of normal fantasy room prefabs
+        public GameObject[] fantasyEndRooms2;                                   //Array of fantasy end room prefabs
+        public GameObject[] fantasyKeyAndLockRooms2;                            //Array of fantasy key rooms immediately followed by their corresponding lock rooms
+
+        public GameObject[] scienceStartRooms2;                                 //Array of science starting room prefabs
+        public GameObject[] scienceNormalRooms2;                                //Array of normal science room prefabs
+        public GameObject[] scienceEndRooms2;                                   //Array of science end room prefabs
+        public GameObject[] scienceKeyAndLockRooms2;                            //Array of science key rooms immediately followed by their corresponding lock rooms
+
+
+
         private GameObject[,] fantasyRooms = new GameObject[7, 7];      //A matrix that holds the fantasy rooms that have been instantiated
         private GameObject[,] scienceRooms = new GameObject[7, 7];      //A matrix that holds the science rooms that have been instantiated
         private List<Vector2> roomCoordinates = new List<Vector2>();    //A list of xy coordinates that have rooms placed in them
@@ -48,35 +74,72 @@ namespace Completed
         //SetupScene gets called from the GameManager script. 
         //SetupScene first calls a method to perform initial data structure initialization.
         //Next it then calls another method to generate a complete random level layout.
-        public void SetupScene()
+        public void SetupScene(int levelNumber)
         {
             //Resets and initializes the data structures used for level generation.
-            InitialiseDataStructures();
+            InitialiseDataStructures(levelNumber);
 
             //Generates a random level.
-            GenerateMap();
+            //if (levelNumber == 1)
+            //{
+            GenerateMap(levelNumber);
+            //}
         }
 
 
         //Clears data structures in preparation for generating level
-        void InitialiseDataStructures()
+        void InitialiseDataStructures(int levelNumber)
         {
             for (int x = 0; x < 7; x++)
             {
                 for (int y = 0; y < 7; y++) //This loop makes sure every position in fantasyRooms and scienceRooms are empty.
                 {
+                    //if (fantasyRooms[x, y] != null)
+                    //{
+                    Destroy(fantasyRooms[x, y]);
+                    Destroy(scienceRooms[x, y]);
                     fantasyRooms[x, y] = null;
                     scienceRooms[x, y] = null;
+                    //}
                 }
             }
+            Destroy(GameObject.Find("cave9(Clone)"));
+            Destroy(GameObject.Find("lab9(Clone)"));
+
             roomCoordinates = new List<Vector2>();
             roomCoordinatesSize = 0;
+
+            if (levelNumber == 1)
+            {
+                fantasyStartRooms = fantasyStartRooms1;
+                fantasyNormalRooms = fantasyNormalRooms1;
+                fantasyEndRooms = fantasyEndRooms1;
+                fantasyKeyAndLockRooms = fantasyKeyAndLockRooms1;
+
+                scienceStartRooms = scienceStartRooms1;
+                scienceNormalRooms = scienceNormalRooms1;
+                scienceEndRooms = scienceEndRooms1;
+                scienceKeyAndLockRooms = scienceKeyAndLockRooms1;
+            }
+            else if (levelNumber == 2)
+            {
+                fantasyStartRooms = fantasyStartRooms2;
+                fantasyNormalRooms = fantasyNormalRooms2;
+                fantasyEndRooms = fantasyEndRooms2;
+                fantasyKeyAndLockRooms = fantasyKeyAndLockRooms2;
+
+                scienceStartRooms = scienceStartRooms2;
+                scienceNormalRooms = scienceNormalRooms2;
+                scienceEndRooms = scienceEndRooms2;
+                scienceKeyAndLockRooms = scienceKeyAndLockRooms2;
+            }
+
         }
 
 
 
         //This method places starting room, places a certain number of regular rooms in a loop, then places an exit room.
-        void GenerateMap()
+        void GenerateMap(int levelNumber)
         {
             //Levels are randomly generated with rooms being placed into a 7 by 7 grid.
             //The starting room is always placed in the middle of the grid at position (3,3).
@@ -100,6 +163,7 @@ namespace Completed
             roomCoordinates.Add(startPos);
             roomCoordinatesSize += 1;
 
+
             for (int i = 0; i < 8; i++) //This loop places 8 "normal" rooms that are not starting rooms, exit rooms, key rooms, or lock rooms.
             {
                 Vector3 coordinate = selectCoordinate();    //Calls function that will return an available coordinate pair for instantiating a new room.
@@ -110,11 +174,11 @@ namespace Completed
 
                 GameObject fantasyRoomToInstantiate = Instantiate(fanAndSciRoom._fantasy, scaledCoordinate, Quaternion.identity); //Instantiates fantasy room
                 fantasyRooms[(int)coordinate.x, (int)coordinate.y] = fantasyRoomToInstantiate;  //Adds just instantiated fantasy room to fantasyRooms matrix at appropriate coordinates.
-                spawnEnemies(scaledCoordinate, fantasyEnemies, fanAndSciRoom._fantasy.tag);     //This method instantiates enemies at the most recently instantiated fantasy room.
+                spawnEnemies(scaledCoordinate, fantasyEnemies, fanAndSciRoom._fantasy.transform.name);     //This method instantiates enemies at the most recently instantiated fantasy room.
 
                 GameObject scienceRoomToInstantiate = Instantiate(fanAndSciRoom._science, offsetCoordinate, Quaternion.identity);   //Instantiates science room
                 scienceRooms[(int)coordinate.x, (int)coordinate.y] = scienceRoomToInstantiate;  //Adds just instantiated science room to scienceRooms matrix at appropriate coordinates.
-                spawnEnemies(offsetCoordinate, fantasyEnemies, fanAndSciRoom._science.tag);     //This method instantiates enemies at the most recently instantiated science room.
+                spawnEnemies(offsetCoordinate, fantasyEnemies, fanAndSciRoom._science.transform.name);     //This method instantiates enemies at the most recently instantiated science room.
 
                 //Opens the doors between the newly instnatiated room and its neighbor so that the player character can move between rooms.
                 openDoors((int)coordinate.z, (int)coordinate.x, (int)coordinate.y, fantasyRoomToInstantiate, scienceRoomToInstantiate);
@@ -167,12 +231,12 @@ namespace Completed
                         //Instantiates fantasy exit room, adds the room to our model, and spawns enemies in the exit room.
                         GameObject fantasyRoomToInstantiate = Instantiate(fantasyEndRooms[0], scaledEndPos, Quaternion.identity);
                         fantasyRooms[(int)endPos.x, (int)endPos.y] = roomToInstantiate;
-                        spawnEnemies(scaledEndPos, fantasyEnemies, fantasyEndRooms[0].tag);
+                        spawnEnemies(scaledEndPos, fantasyEnemies, fantasyEndRooms[0].transform.name);
 
                         //Instantiates science exit room, adds the room to our model, and spawns enemies in the exit room.
                         GameObject scienceRoomToInstantiate = Instantiate(scienceEndRooms[0], offsetEndPos, Quaternion.identity);
                         scienceRooms[(int)endPos.x, (int)endPos.y] = roomToInstantiate;
-                        spawnEnemies(offsetEndPos, fantasyEnemies, scienceEndRooms[0].tag);
+                        spawnEnemies(offsetEndPos, fantasyEnemies, scienceEndRooms[0].transform.name);
 
                         lockAndKeyFarAway = true;
 
@@ -193,8 +257,8 @@ namespace Completed
         {
             if (relativeDirection == 1)     //Placing a room to the north of a previously existing room
             {
-                GameObject fantasyToDestroy = fantasyRooms[x, y-1];
-                GameObject scienceToDestroy = scienceRooms[x, y-1];
+                GameObject fantasyToDestroy = fantasyRooms[x, y - 1];
+                GameObject scienceToDestroy = scienceRooms[x, y - 1];
 
                 //Destroy the north closed door and wall of the previously existing room
                 fantasyToDestroy.transform.Find("northDoorClosed").gameObject.SetActive(false);
@@ -211,8 +275,8 @@ namespace Completed
             }
             else if (relativeDirection == 2)    //Placing a room to the south of a previously existing room
             {
-                GameObject fantasyToDestroy = fantasyRooms[x, y+1];
-                GameObject scienceToDestroy = scienceRooms[x, y+1];
+                GameObject fantasyToDestroy = fantasyRooms[x, y + 1];
+                GameObject scienceToDestroy = scienceRooms[x, y + 1];
 
                 //Destroy the south closed door and wall of the previously existing room
                 fantasyToDestroy.transform.Find("southDoorClosed").gameObject.SetActive(false);
@@ -228,8 +292,8 @@ namespace Completed
             }
             else if (relativeDirection == 3)    //Placing a room to the east of a previously existing room
             {
-                GameObject fantasyToDestroy = fantasyRooms[x-1, y];
-                GameObject scienceToDestroy = scienceRooms[x-1, y];
+                GameObject fantasyToDestroy = fantasyRooms[x - 1, y];
+                GameObject scienceToDestroy = scienceRooms[x - 1, y];
 
                 //Destroy the east closed door and wall of the previously existing room
                 fantasyToDestroy.transform.Find("eastDoorClosed").gameObject.SetActive(false);
@@ -245,8 +309,8 @@ namespace Completed
             }
             else if (relativeDirection == 4)    //Placing a room to the west of a previously existing room
             {
-                GameObject fantasyToDestroy = fantasyRooms[x+1, y];
-                GameObject scienceToDestroy = scienceRooms[x+1, y];
+                GameObject fantasyToDestroy = fantasyRooms[x + 1, y];
+                GameObject scienceToDestroy = scienceRooms[x + 1, y];
 
                 //Destroy the west closed door and wall of the previously existing room
                 fantasyToDestroy.transform.Find("westDoorClosed").gameObject.SetActive(false);
@@ -352,7 +416,7 @@ namespace Completed
         //Helper method returns true when xy coordinate pair is available for instantiating a new room, false otherwise.
         Boolean isCoordinateEmpty(int x, int y)
         {
-            if(x >= 7 || x < 0 || y >= 7 || y< 0)   //xy coordinate is out of bounds of our 7 by 7 grid model.
+            if (x >= 7 || x < 0 || y >= 7 || y < 0)   //xy coordinate is out of bounds of our 7 by 7 grid model.
             {
                 return false;
             }
@@ -367,7 +431,7 @@ namespace Completed
         }
 
 
-        
+
         //Method will place a key room and return the xy coordinates where it was instantiated.
         Vector2 placeKeyRoom()
         {
@@ -377,11 +441,11 @@ namespace Completed
 
             GameObject fantasyRoomToInstantiate = Instantiate(fantasyKeyAndLockRooms[0], scaledCoordinate, Quaternion.identity);
             fantasyRooms[(int)coordinate.x, (int)coordinate.y] = fantasyRoomToInstantiate;
-            spawnEnemies(scaledCoordinate, fantasyEnemies, fantasyKeyAndLockRooms[0].tag);
+            spawnEnemies(scaledCoordinate, fantasyEnemies, fantasyKeyAndLockRooms[0].transform.name);
 
             GameObject scienceRoomToInstantiate = Instantiate(scienceKeyAndLockRooms[0], offsetCoordinate, Quaternion.identity);
             scienceRooms[(int)coordinate.x, (int)coordinate.y] = scienceRoomToInstantiate;
-            spawnEnemies(offsetCoordinate, fantasyEnemies, scienceKeyAndLockRooms[0].tag);
+            spawnEnemies(offsetCoordinate, fantasyEnemies, scienceKeyAndLockRooms[0].transform.name);
 
             openDoors((int)coordinate.z, (int)coordinate.x, (int)coordinate.y, fantasyRoomToInstantiate, scienceRoomToInstantiate);
 
@@ -401,11 +465,11 @@ namespace Completed
 
             GameObject fantasyRoomToInstantiate = Instantiate(fantasyKeyAndLockRooms[1], scaledCoordinate, Quaternion.identity);
             fantasyRooms[(int)coordinate.x, (int)coordinate.y] = fantasyRoomToInstantiate;
-            spawnEnemies(scaledCoordinate, fantasyEnemies, fantasyKeyAndLockRooms[1].tag);
+            spawnEnemies(scaledCoordinate, fantasyEnemies, fantasyKeyAndLockRooms[1].transform.name);
 
             GameObject scienceRoomToInstantiate = Instantiate(scienceKeyAndLockRooms[1], offsetCoordinate, Quaternion.identity);
             scienceRooms[(int)coordinate.x, (int)coordinate.y] = scienceRoomToInstantiate;
-            spawnEnemies(offsetCoordinate, fantasyEnemies, scienceKeyAndLockRooms[1].tag);
+            spawnEnemies(offsetCoordinate, fantasyEnemies, scienceKeyAndLockRooms[1].transform.name);
 
             openDoors((int)coordinate.z, (int)coordinate.x, (int)coordinate.y, fantasyRoomToInstantiate, scienceRoomToInstantiate);
 
@@ -420,54 +484,82 @@ namespace Completed
         void spawnEnemies(Vector2 pos, GameObject[] enemyTypes, String roomID)
         {
             //Switch statment based on room ID, this is because different rooms have different enemy placements.
-            switch (roomID)
+
+            //Important note: each one of our rooms is 16 blocks long and 11 blocks high.
+            //Each one of these "blocks" is a square measuring 16 Unity units by 16 Unity units.
+            //Therefore, enemies are being instantiated at coordinates that are some multiple of 16, to keep placement consistent with our room dimensions.
+
+            //basic enemy - 0
+            //trap enemy - 1
+            //ranged enemy - 2
+            //boss enemy - 3
+            if (roomID.Equals("cave1") || roomID.Equals("lab1"))
             {
-                //Important note: each one of our rooms is 16 blocks long and 11 blocks high.
-                //Each one of these "blocks" is a square measuring 16 Unity units by 16 Unity units.
-                //Therefore, enemies are being instantiated at coordinates that are some multiple of 16, to keep placement consistent with our room dimensions.
-                case "0": break;
-
-                case "1":
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (5 * 16), pos.y - (3 * 16)), Quaternion.identity);
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (9 * 16), pos.y - (3 * 16)), Quaternion.identity);
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (13 * 16), pos.y - (3 * 16)), Quaternion.identity);
-                    break;
-
-                case "2":
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (7 * 16), pos.y - (3 * 16)), Quaternion.identity);
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (10 * 16), pos.y - (3 * 16)), Quaternion.identity);
-                    break;
-
-                case "3":
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (6 * 16)), Quaternion.identity);
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
-                    break;
-
-                case "4":
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
-                    Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
-                    break;
-
-                case "5": break;
-
-                case "6": break;
-
-                case "7": break;
-
-                case "8":
-                    Instantiate(enemyTypes[1], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
-                    break;
-
-                case "9":
-                    Instantiate(enemyTypes[1], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
-                    break;
-
-                default: break;
-
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (5 * 16), pos.y - (3 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (9 * 16), pos.y - (3 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (13 * 16), pos.y - (3 * 16)), Quaternion.identity);
             }
-
+            else if (roomID.Equals("cave2") || roomID.Equals("lab2"))
+            {
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (5 * 16), pos.y - (3 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (11 * 16), pos.y - (3 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("cave3") || roomID.Equals("lab3"))
+            {
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (5 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (8 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("cave4") || roomID.Equals("lab4"))
+            {
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("cave8") || roomID.Equals("lab8"))
+            {
+                Instantiate(enemyTypes[3], new Vector2(pos.x + (8 * 16), pos.y - (8 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("cave9") || roomID.Equals("lab9"))
+            {
+                Instantiate(enemyTypes[3], new Vector2(pos.x + (8 * 16), pos.y - (8 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("food1") || roomID.Equals("forest1"))
+            {
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (8 * 16), pos.y - (6 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (9 * 16), pos.y - (6 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("food2") || roomID.Equals("forest2"))
+            {
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (6 * 16), pos.y - (5 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (11 * 16), pos.y - (5 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("food3") || roomID.Equals("forest3"))
+            {
+                Instantiate(enemyTypes[2], new Vector2(pos.x + (2 * 16), pos.y - (2 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (5 * 16), pos.y - (6 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("food4") || roomID.Equals("forest4"))
+            {
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (2 * 16), pos.y - (2 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (2 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (15 * 16), pos.y - (2 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (15 * 16), pos.y - (10 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("food6") || roomID.Equals("forest6"))
+            {
+                Instantiate(enemyTypes[2], new Vector2(pos.x + (5 * 16), pos.y - (6 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (12 * 16), pos.y - (2 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[0], new Vector2(pos.x + (12 * 16), pos.y - (9 * 16)), Quaternion.identity);
+            }
+            else if (roomID.Equals("food8") || roomID.Equals("forest8"))
+            {
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (2 * 16), pos.y - (2 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (2 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (15 * 16), pos.y - (2 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[1], new Vector2(pos.x + (15 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[3], new Vector2(pos.x + (8 * 16), pos.y - (10 * 16)), Quaternion.identity);
+                Instantiate(enemyTypes[3], new Vector2(pos.x + (9 * 16), pos.y - (10 * 16)), Quaternion.identity);
+            }
         }
-
 
 
     }
